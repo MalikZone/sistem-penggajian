@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/admin', function () {
+    return view('layout-admin.master-admin');
+});
 
-Route::get('/dashboard', [DashboardController::class, 'dashboard']);
+Route::get('/example-page', function () {
+    return view('layout-admin.example-page-content');
+});

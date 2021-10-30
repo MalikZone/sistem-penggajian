@@ -1,10 +1,10 @@
-@extends('backend.layout-backend.main')
+@extends('layout-admin.master-admin')
 
 @section('bootstrap')
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 @endsection
 
-@section('permohonan-kk', 'active')
+@section('example-page', 'active')
 @section('title', '| Permohonan KK')
 
 @section('judul')
@@ -31,18 +31,10 @@
                                 <thead>
                                     <tr>
                                         <th>Nomor</th>
-                                        <th>Nama</th>
-                                        <th>Tempat/Tangal Lahir</th>
-                                        <th>Jenis Kelamin</th>
+                                        <th>Data 1</th>
+                                        <th>Data 2</th>
+                                        <th>Data 3</th>
                                         <th>Status</th>
-                                        <th>No KTP</th>
-                                        <th>Kewarganegaraan</th>
-                                        <th>Agama</th>
-                                        <th>Pekerjaan</th>
-                                        <th>Foto KTP Suami</th>
-                                        <th>Foto KTP Istri</th>
-                                        <th>Alamat</th>
-                                        <th>Approve</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>

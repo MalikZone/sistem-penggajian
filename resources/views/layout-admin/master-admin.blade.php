@@ -8,11 +8,11 @@
   <title>Kelurahan Priuk @yield('title')</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{ asset('admin/plugins/fontawesome-free/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('template-backend/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- IonIcons -->
-  <link rel="stylesheet" href="{{ asset('admin/http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('template-backend/http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css') }}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('admin/dist/css/adminlte.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('template-backend/dist/css/adminlte.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   {{-- bootstrap --}}
@@ -46,23 +46,23 @@ to get the desired effect
     <!-- SEARCH FORM -->
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
+    {{-- <ul class="navbar-nav ml-auto">
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item">
-        {{-- <a class="nav-link d-flex justify-content-start">
+        <a class="nav-link d-flex justify-content-start">
           <form action="{{ route('logout') }}" method="POST" class="">
               @csrf
               <button type="submit" class="btn btn-danger mt-1"><i class="fas fa-sign-out-alt"></i></button>
           </form>
           <p class="m-2">Logout</p>
-        </a> --}}
+        </a>
       </li>
-    </ul>
+    </ul> --}}
   </nav>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  @include('backend.layout-backend.side-menu')
+  @include('layout-admin.side')
 
   
 
@@ -97,16 +97,16 @@ to get the desired effect
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('template-backend/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap -->
-<script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('template-backend/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE -->
-<script src="{{ asset('admin/dist/js/adminlte.js') }}"></script>
+<script src="{{ asset('template-backend/dist/js/adminlte.js') }}"></script>
 
 <!-- OPTIONAL SCRIPTS -->
-<script src="{{ asset('admin/plugins/chart.js/Chart.min.js') }}"></script>
-<script src="{{ asset('admin/dist/js/demo.js') }}"></script>
-<script src="{{ asset('admin/dist/js/pages/dashboard3.js') }}"></script>
+<script src="{{ asset('template-backend/plugins/chart.js/Chart.min.js') }}"></script>
+<script src="{{ asset('template-backend/dist/js/demo.js') }}"></script>
+<script src="{{ asset('template-backend/dist/js/pages/dashboard3.js') }}"></script>
 @yield('data-table')
 </body>
 </html>
