@@ -33,7 +33,7 @@
             <a href="#" class="nav-link @yield('permohonan-ktp') ">
               <i class="nav-icon fas fa-id-card"></i>
               <p>
-                Menu 1
+                Data Karyawan
               </p>
             </a>
           </li>
@@ -41,7 +41,7 @@
             <a href="#" class="nav-link @yield('permohonan-kk') ">
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
-                Menu 2
+                Absesnsi
               </p>
             </a>
           </li>
@@ -49,7 +49,7 @@
             <a href="#" class="nav-link @yield('example-page') ">
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
-                Example Page Content
+                Data Gaji
               </p>
             </a>
           </li>
