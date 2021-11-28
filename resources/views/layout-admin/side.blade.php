@@ -30,7 +30,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link @yield('permohonan-ktp') ">
+            <a href="{{route('karyawan')}}" class="nav-link">
               <i class="nav-icon fas fa-id-card"></i>
               <p>
                 Data Karyawan
@@ -38,7 +38,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link @yield('permohonan-kk') ">
+            <a href="{{route('absensi')}}" class="nav-link">
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 Absesnsi
@@ -46,7 +46,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link @yield('example-page') ">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 Data Gaji
@@ -62,7 +62,7 @@
             </a>
         </li> --}}
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link"  @yield('user-role')>
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Menu & Sub Menu

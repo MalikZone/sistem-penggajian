@@ -13,14 +13,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::prefix('admin')->group(function(){
+    Route::get('/', 'DashboardController@index')->name('dashboard');
+
+    Route::prefix('karyawan')->group(function(){
+        Route::get('/', 'KaryawanController@index')->name('karyawan');
+        Route::get('/form-karyawan/{id?}', 'KaryawanController@formKaryawan')->name('form-karyawan');
+        Route::post('/save-karyawan/{id?}', 'KaryawanController@saveKaryawan');
+        Route::delete('/delete-karyawan/{id}', 'KaryawanController@deleteKaryawan');
+    });
+
+    Route::prefix('absensi')->group(function(){
+        Route::get('/', 'AbsensiController@index')->name('absensi');
+        Route::get('/form-absensi/{id?}', 'AbsensiController@formAbsensi')->name('form-absensi');
+        Route::post('/save-absensi/{id?}', 'AbsensiController@saveAbsensi');
+        // Route::resource('/jabatan', 'JabatanController');
+        // Route::resource('/status', 'StatusController');
+        // Route::resource('/pendidikan', 'PendidikanController');
+        // Route::resource('/karyawan', 'DataKaryawanController');
+    });
 });
 
-Route::get('/admin', function () {
-    return view('layout-admin.master-admin');
-});
-
-Route::get('/example-page', function () {
-    return view('layout-admin.example-page-content');
-});
+// Route::get('/example-page', function () {
+//     return view('layout-admin.example-page-content');
+// });
