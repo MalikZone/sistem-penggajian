@@ -24,17 +24,19 @@ Route::prefix('admin')->group(function(){
         Route::get('/', 'KaryawanController@index')->name('karyawan');
         Route::get('/form-karyawan/{id?}', 'KaryawanController@formKaryawan')->name('form-karyawan');
         Route::post('/save-karyawan/{id?}', 'KaryawanController@saveKaryawan');
-        Route::delete('/delete-karyawan/{id}', 'KaryawanController@deleteKaryawan');
+        // Route::delete('/delete-karyawan/{id}', 'KaryawanController@deleteKaryawan');
     });
 
     Route::prefix('absensi')->group(function(){
         Route::get('/', 'AbsensiController@index')->name('absensi');
         Route::get('/form-absensi/{id?}', 'AbsensiController@formAbsensi')->name('form-absensi');
         Route::post('/save-absensi/{id?}', 'AbsensiController@saveAbsensi');
-        // Route::resource('/jabatan', 'JabatanController');
-        // Route::resource('/status', 'StatusController');
-        // Route::resource('/pendidikan', 'PendidikanController');
-        // Route::resource('/karyawan', 'DataKaryawanController');
+    });
+
+    Route::prefix('divisi')->group(function(){
+        Route::get('/', 'DivisiController@index')->name('divisi');
+        Route::get('/form-divisi/{id?}', 'DivisiController@formDivisi')->name('form-divisi');
+        Route::post('/save-divisi/{id?}', 'DivisiController@saveDivisi');
     });
 });
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Divisi;
 use App\Karyawan;
 use Illuminate\Http\Request;
 
@@ -14,20 +15,21 @@ class KaryawanController extends Controller
     }
 
     public function index(){
-        $karyawan = Karyawan::all();
+        $karyawan = Karyawan::with(['divisi'])->get();
         return view('layout-admin.karyawan.index', compact('karyawan'));
     }
 
     public function formKaryawan($id = null){
         $karyawan = $this->findKaryawanById($id);
-        return view('layout-admin.karyawan.form', compact('karyawan'));
+        $divisi   = Divisi::all();
+        return view('layout-admin.karyawan.form', compact('karyawan', 'divisi'));
     }
 
     public function saveKaryawan(Request $request, $id = null){
-        $result = [
-            'status'  => false,
-            'message' => ''
-        ];
+        // $result = [
+        //     'status'  => false,
+        //     'message' => ''
+        // ];
         try {
             $karyawan = $this->findKaryawanById($id);
             if (!$karyawan) {
@@ -35,15 +37,15 @@ class KaryawanController extends Controller
             }
             $karyawan->nama       = $request->nama;
             $karyawan->tgl_lahir  = $request->tgl_lahir;
-            $karyawan->divisi     = $request->divisi;
+            $karyawan->divisi_id  = $request->divisi_id;
             $karyawan->email      = $request->email;
             $karyawan->telepon    = $request->no_tlp;
             $karyawan->alamat     = $request->alamat;
             $karyawan->jender     = $request->jender;
             $karyawan->save();
 
-            $result['status']  = true;
-            $result['message'] = 'save karyawan success';
+            // $result['status']  = true;
+            // $result['message'] = 'save karyawan success';
             return redirect('/admin/karyawan');
         } catch (\exception $e) {
             $result['message'] = 'function saveKaryawan() fail => ' . $e;

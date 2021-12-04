@@ -14,7 +14,7 @@ class AbsensiController extends Controller
     }
 
     public function index(){
-        $absensi = Absensi::all();
+        $absensi = Absensi::with(['karyawan'])->get();
         return view('layout-admin.absensi.index', compact('absensi'));
     }
 

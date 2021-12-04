@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Absensi extends Model
+class Divisi extends Model
 {
-    protected $table = 'absensi';
+    protected $table = 'divisi';
 
     public function karyawan()
     {
-        return $this->belongsTo(Karyawan::class);
+        return $this->hasMany(Karyawan::class);
     }
 }

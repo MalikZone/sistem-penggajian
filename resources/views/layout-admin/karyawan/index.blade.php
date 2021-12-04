@@ -35,8 +35,8 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Nama</th>
-                                        <th>Tanggal Lahir</th>
                                         <th>Divisi</th>
+                                        <th>Tanggal Lahir</th>
                                         <th>Email</th>
                                         <th>Telepon</th>
                                         <th>Alamat</th>
@@ -48,8 +48,8 @@
                                             {{-- <td>{{$key + 1}}</td> --}}
                                             <td>{{$item->id}}</td>
                                             <td>{{$item->nama}}</td>
+                                            <td>{{$item->divisi->divisi}}</td>
                                             <td>{{$item->tgl_lahir}}</td>
-                                            <td>{{$item->divisi}}</td>
                                             <td>{{$item->email}}</td>
                                             <td>{{$item->telepon}}</td>
                                             <td>{{$item->alamat}}</td>

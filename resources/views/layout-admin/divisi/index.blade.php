@@ -21,12 +21,12 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                        <h3 class="card-title">DATA ABSENSI</h3>
+                        <h3 class="card-title">DATA DIVISI</h3>
                     </div>
                     <!-- /.card-header -->
                     
                     <div class="card-body">
-                        <a href="{{route('form-absensi')}}" class="btn btn-success" style="margin-bottom: 20px">
+                        <a href="{{route('form-divisi')}}" class="btn btn-success" style="margin-bottom: 20px">
                             <i class="fa fa-plus">Tambah Data</i>
                         </a>
                         <div class="table-responsive">
@@ -34,21 +34,15 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Karyawan</th>
-                                        <th>Tanggal Hadir</th>
-                                        <th>Clock in</th>
-                                        <th>Clock out</th>
-                                        <th>Aksi</th>
+                                        <th>divisi</th>
+                                        <th>aksi</th>
                                     </tr>
-                                    @forelse ($absensi as $key => $item)
+                                    @forelse ($divisi as $key => $item)
                                         <tr>
                                             <td>{{$item->id}}</td>
-                                            <td>{{$item->karyawan->nama}}</td>
-                                            <td>{{$item->tanggal}}</td>
-                                            <td>{{$item->clock_in}}</td>
-                                            <td>{{$item->clock_out}}</td>
+                                            <td>{{$item->divisi}}</td>
                                             <td class="text-center">
-                                                <a href="{{url('admin/absensi/form-absensi/' . $item->id)}}" class="btn btn-primary">
+                                                <a href="{{url('admin/divisi/form-divisi/' . $item->id)}}" class="btn btn-primary">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </td>

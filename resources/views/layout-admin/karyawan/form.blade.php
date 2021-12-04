@@ -40,13 +40,18 @@
                                 </div>
 
                                 <div class="mb-4">
+                                    <label for="nama_karyawan">Divisi</label>
+                                    <select class="form-control" name="divisi_id">
+                                    <option>--pilih Divisi--</option>
+                                    @foreach ($divisi as $item)
+                                        <option value="{{$item->id}}" {{isset($karyawan->divisi_id) && $item->id == $karyawan->divisi_id ? 'selected' : ''}}>{{$item->divisi}}</option>   
+                                    @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="mb-4">
                                     <label for="tgl_lahir">Tanggal Lahir</label>
                                     <input type="date" name="tgl_lahir" placeholder="tanggal lahir..." class="form-control" value="{{isset($karyawan) ? $karyawan->tgl_lahir : ''}}">
-                                </div>
-                    
-                                <div class="mb-4">
-                                    <label for="divisi">Divisi</label>
-                                    <input type="text" name="divisi" placeholder="divisi..." class="form-control" value="{{isset($karyawan) ? $karyawan->divisi : ''}}">
                                 </div>
 
                                 <div class="mb-4">
@@ -61,7 +66,7 @@
 
                                 <div class="mb-4">
                                     <label for="alamat">Alamat</label>
-                                    <textarea name="alamat" placeholder="alamat..." class="form-control" value="{{isset($karyawan) ? $karyawan->nama : ''}}"></textarea>
+                                    <textarea name="alamat" placeholder="alamat..." class="form-control">{{isset($karyawan) ? $karyawan->alamat : ''}}</textarea>
                                 </div>
                     
                                 <div class="mb-4">

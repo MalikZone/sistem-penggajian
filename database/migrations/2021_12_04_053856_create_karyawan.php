@@ -15,9 +15,9 @@ class CreateKaryawan extends Migration
     {
         Schema::create('karyawan', function (Blueprint $table) {
             $table->id();
+            $table->integer('divisi_id');
             $table->string('nama');
             $table->date('tgl_lahir');
-            $table->string('divisi');
             $table->string('email');
             $table->bigInteger('telepon');
             $table->longText('alamat');

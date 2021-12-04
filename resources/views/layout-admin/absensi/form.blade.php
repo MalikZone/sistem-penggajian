@@ -21,7 +21,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h3 class="card-title">FORM KARYAWAN</h3>
+                    <h3 class="card-title">FORM ABSENSI</h3>
                 </div>
                 <!-- /.card-header -->
                 
@@ -39,7 +39,7 @@
                                     <select class="form-control" name="karyawan_id">
                                     <option>--pilih Karyawan--</option>
                                     @foreach ($karyawan as $item)
-                                        <option value="{{$item->id}}">{{$item->id .' | '. $item->nama . ' | ' . $item->divisi}}</option>   
+                                        <option value="{{$item->id}}" {{isset($absensi->karyawan) && $item->id == $absensi->karyawan->id ? 'selected' : ''}}>{{$item->id .' | '. $item->nama .' | '. $item->divisi->divisi}}</option>   
                                     @endforeach
                                     </select>
                                 </div>
@@ -53,10 +53,10 @@
                                     <label for="clock_in">Clock In</label>
                                     <select class="form-control" name="clock_in">
                                     <option>-- keterangan --</option>
-                                    <option value="in">in</option>
-                                    <option value="izin">izin</option>
-                                    <option value="sakit">Sakit</option>
-                                    <option value="cuti">Cuti</option>
+                                    <option value="in" {{isset($absensi) && $absensi->clock_in == 'in' ? 'selected' : ''}}>in</option>
+                                    <option value="izin" {{isset($absensi) && $absensi->clock_in == 'izin' ? 'selected' : ''}}>izin</option>
+                                    <option value="sakit" {{isset($absensi) && $absensi->clock_in == 'sakit' ? 'selected' : ''}}>Sakit</option>
+                                    <option value="cuti" {{isset($absensi) && $absensi->clock_in == 'cuti' ? 'selected' : ''}}>Cuti</option>
                                     </select>
                                 </div>
 
@@ -64,10 +64,10 @@
                                     <label for="clock_in">Clock Out</label>
                                     <select class="form-control" name="clock_out">
                                     <option>-- keterangan --</option>
-                                    <option value="out">out</option>
-                                    <option value="izin">izin</option>
-                                    <option value="sakit">Sakit</option>
-                                    <option value="cuti">Cuti</option>
+                                    <option value="out" {{isset($absensi) && $absensi->clock_out == 'out' ? 'selected' : ''}}>out</option>
+                                    <option value="izin" {{isset($absensi) && $absensi->clock_out == 'izin' ? 'selected' : ''}}>izin</option>
+                                    <option value="sakit" {{isset($absensi) && $absensi->clock_out == 'sakit' ? 'selected' : ''}}>Sakit</option>
+                                    <option value="cuti" {{isset($absensi) && $absensi->clock_out == 'cuti' ? 'selected' : ''}}>Cuti</option>
                                     </select>
                                 </div>
                     

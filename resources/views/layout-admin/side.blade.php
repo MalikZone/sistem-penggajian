@@ -38,6 +38,14 @@
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
+            <a href="{{route('divisi')}}" class="nav-link">
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                Divisi
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
             <a href="{{route('absensi')}}" class="nav-link">
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
