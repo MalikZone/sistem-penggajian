@@ -21,17 +21,17 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h3 class="card-title">FORM ABSENSI</h3>
+                    <h3 class="card-title">FORM GAJI</h3>
                 </div>
                 <!-- /.card-header -->
                 
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            @if (!isset($absensi))
-                                <form action="{{url('admin/absensi/save-absensi')}}" method="post">
+                            @if (!isset($gaji))
+                                <form action="{{url('admin/gaji/save-gaji')}}" method="post">
                             @else
-                                <form action="{{url('admin/absensi/save-absensi/' . $absensi->id)}}" method="post">
+                                <form action="{{url('admin/gaji/save-gaji/' . $gaji->id)}}" method="post">
                             @endif
                                 @csrf
                                 <div class="mb-4">
@@ -39,34 +39,15 @@
                                     <select class="form-control" name="karyawan_id">
                                     <option>--pilih Karyawan--</option>
                                     @foreach ($karyawan as $item)
-                                        <option value="{{$item->id}}" {{isset($absensi->karyawan) && $item->id == $absensi->karyawan->id ? 'selected' : ''}}>{{$item->id .' | '. $item->nama .' | '. $item->divisi->divisi}}</option>   
+                                        <option value="{{$item->id}}" {{isset($gaji->karyawan) && $item->id == $gaji->karyawan->id ? 'selected' : ''}}>{{$item->id .' | '. $item->nama .' | '. $item->divisi->divisi}}</option>   
                                     @endforeach
                                     </select>
                                 </div>
 
                                 <div class="mb-4">
-                                    <label for="tgl_lahir">Tanggal Absen</label>
-                                    <input type="date" name="tgl_absen" placeholder="tanggal absen..." class="form-control" value="{{isset($absensi) ? $absensi->tanggal : ''}}">
+                                    <label for="tgl_lahir">Gaji Pokok</label>
+                                    <input type="number" name="gaji" placeholder="Gaji Pokok..." class="form-control" value="{{isset($gaji) ? $gaji->gaji : ''}}">
                                 </div>
-
-                                <div class="mb-4">
-                                    <label for="clock_in">Keterangan</label>
-                                    <select class="form-control" name="keterangan">
-                                    <option>-- keterangan --</option>
-                                    <option value="tanpa keterangan" {{isset($absensi) && $absensi->keterangan == 'tanpa keterangan' ? 'selected' : ''}}>Tanpa Keterangan</option>
-                                    <option value="telat" {{isset($absensi) && $absensi->keterangan == 'telat' ? 'selected' : ''}}>Telat</option>
-                                    </select>
-                                </div>
-                    
-                                {{-- <div class="">
-                                    <label for="jabatan">Jabatan</label>
-                                    <select class="form-control" name="jabatan_id">
-                                    <option>--pilih jabatan--</option>
-                                    @foreach ($jabatan as $item)
-                                        <option value="{{$item->id}}">{{$item->nama_jabatan}}</option>   
-                                    @endforeach
-                                    </select>
-                                </div> --}}
                     
                                 <button type="submit" class="btn btn-success">
                                     <i class="glyphicon glyphicon-floppy-saved">Simpan</i>

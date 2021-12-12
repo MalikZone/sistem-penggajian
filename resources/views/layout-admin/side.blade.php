@@ -54,10 +54,18 @@
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link">
+            <a href="{{route('gaji')}}" class="nav-link">
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 Data Gaji
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="detail-gaji" class="nav-link">
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                Detail Gaji
               </p>
             </a>
           </li>
@@ -69,7 +77,7 @@
             </p>
             </a>
         </li> --}}
-          <li class="nav-item has-treeview">
+          {{-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
@@ -90,14 +98,8 @@
                   <p>Kepala Bagian</p>
                 </a>
               </li>
-              {{-- <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>User</p>
-                </a>
-              </li> --}}
             </ul>
-          </li>
+          </li> --}}
           {{-- <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link @yield('rating') ">
               <i class="nav-icon fas fa-star-half-alt"></i>
@@ -106,14 +108,14 @@
               </p>
             </a>
           </li> --}}
-          <li class="nav-item has-treeview menu-open">
+          {{-- <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link">
               <i class="far fa-hand-point-left"></i>
               <p>
                 Back To Homepage
               </p>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

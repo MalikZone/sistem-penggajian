@@ -21,33 +21,56 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                        <h3 class="card-title">DATA ABSENSI</h3>
+                        <h3 class="card-title">DATA DETAIL GAJI KARYAWAN</h3>
                     </div>
                     <!-- /.card-header -->
                     
                     <div class="card-body">
-                        <a href="{{route('form-absensi')}}" class="btn btn-success" style="margin-bottom: 20px">
-                            <i class="fa fa-plus">Tambah Data</i>
-                        </a>
+                        <form action="{{ url('admin/detail-gaji/generate-detail-gaji') }}" method="post">
+                            @csrf
+                            <div class="mb-4">
+                                <label for="tgl_lahir">Tanggal Periode Awal</label>
+                                <input type="date" name="periode_form" placeholder="periode..." class="form-control" value="">
+                            </div>
+                            <div class="mb-4">
+                                <label for="tgl_lahir">Tanggal Periode Akhir</label>
+                                <input type="date" name="periode_to" placeholder="periode..." class="form-control" value="">
+                            </div>
+                            <button type="submit" class="btn btn-success">
+                                <i class="glyphicon glyphicon-floppy-saved">Generate Gaji</i>
+                            </button>
+                        </form>
+                        {{-- <a href="{{route('generate-detail-gaji')}}" class="btn btn-success" style="margin-bottom: 20px">
+                            <i class="fa fa-plus">Generate Gaji</i>
+                        </a> --}}
                         <div class="table-responsive">
                             <table id="tabel-data" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
                                         <th>Karyawan</th>
-                                        <th>Tanggal Hadir</th>
-                                        <th>keterangan</th>
+                                        <th>Periode</th>
+                                        <th>Gaji Pokok</th>
+                                        <th>Potongan</th>
+                                        <th>Total Gaji</th>
                                         <th>Aksi</th>
                                     </tr>
-                                    @forelse ($absensi as $key => $item)
+                                    @forelse ($detailGaji as $key => $item)
                                         <tr>
                                             <td>{{$item->id}}</td>
                                             <td>{{$item->karyawan->nama}}</td>
-                                            <td>{{$item->tanggal}}</td>
-                                            <td>{{$item->keterangan}}</td>
-                                            <td class="text-center">
-                                                <a href="{{url('admin/absensi/form-absensi/' . $item->id)}}" class="btn btn-primary">
+                                            <td>{{$item->periode_from.' - '.$item->periode_to}}</td>
+                                            <td>{{number_format($item->karyawan->gaji->gaji, 0)}}</td>
+                                            <td>{{number_format($item->potongan, 0)}}</td>
+                                            <td>{{number_format($item->total_gaji,0)}}</td>
+                                            {{-- <td class="text-center">
+                                                <a href="{{url('admin/gaji/form-gaji/' . $item->id)}}" class="btn btn-primary">
                                                     <i class="fa fa-edit"></i>
+                                                </a>
+                                            </td> --}}
+                                            <td class="text-center">
+                                                <a href="#" class="btn btn-primary">
+                                                    <i class="fa fa-edit">detail</i>
                                                 </a>
                                             </td>
                                         </tr>

@@ -38,6 +38,19 @@ Route::prefix('admin')->group(function(){
         Route::get('/form-divisi/{id?}', 'DivisiController@formDivisi')->name('form-divisi');
         Route::post('/save-divisi/{id?}', 'DivisiController@saveDivisi');
     });
+
+    Route::prefix('gaji')->group(function(){
+        Route::get('/', 'GajiController@index')->name('gaji');
+        Route::get('/form-gaji/{id?}', 'GajiController@formGaji')->name('form-gaji');
+        Route::post('/save-gaji/{id?}', 'GajiController@saveGaji');
+    });
+
+    Route::prefix('detail-gaji')->group(function(){
+        Route::get('/', 'DetailGajiController@index')->name('detail-gaji');
+        // Route::get('/form-detail-gaji/{id?}', 'DetailGajiController@formGaji')->name('form-detail-gaji');
+        Route::post('/generate-detail-gaji', 'DetailGajiController@GenerateGaji');
+        // Route::post('/save-detail-gaji/{id?}', 'DetailGajiController@saveGaji');
+    });
 });
 
 // Route::get('/example-page', function () {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Absensi;
 use App\Karyawan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AbsensiController extends Controller
 {
@@ -14,7 +15,9 @@ class AbsensiController extends Controller
     }
 
     public function index(){
-        $absensi = Absensi::with(['karyawan'])->get();
+        $absensi = Absensi::with(['karyawan'])
+                    ->orderBy('id', 'DESC')
+                    ->get();
         return view('layout-admin.absensi.index', compact('absensi'));
     }
 
@@ -35,16 +38,15 @@ class AbsensiController extends Controller
                 $absensi         = new Absensi();
             }
             $absensi->karyawan_id   = $request->karyawan_id;
-            $absensi->tanggal       = $request->tgl_masuk;
-            $absensi->clock_in      = $request->clock_in;
-            $absensi->clock_out     = $request->clock_out;
+            $absensi->tanggal       = $request->tgl_absen;
+            $absensi->keterangan    = $request->keterangan;
             $absensi->save();
 
             $result['status']  = true;
             $result['message'] = 'save absensi success';
             return redirect('/admin/absensi');
         } catch (\exception $e) {
-            $result['message'] = 'function saveAbsensi() fail => ' . $e;
+            $result['message'] = 'function saveAbsensi() fail => ' . $e->getMessage();
             return redirect()->back();
         }
     }

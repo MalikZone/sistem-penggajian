@@ -17,4 +17,14 @@ class Karyawan extends Model
     {
         return $this->hasMany(Absensi::class);
     }
+
+    public function gaji()
+    {
+        return $this->hasOne(Gaji::class);
+    }
+
+    public function detail_gaji()
+    {
+        return $this->hasOne(DetailGaji::class);
+    }
 }

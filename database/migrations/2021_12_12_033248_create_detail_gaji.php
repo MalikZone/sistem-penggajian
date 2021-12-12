@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAbsensi extends Migration
+class CreateDetailGaji extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateAbsensi extends Migration
      */
     public function up()
     {
-        Schema::create('absensi', function (Blueprint $table) {
+        Schema::create('detail_gaji', function (Blueprint $table) {
             $table->id();
             $table->integer('karyawan_id');
-            $table->date('tanggal');
-            $table->string('clock_in');
-            $table->string('clock_out');
+            $table->decimal('gaji_pokok', 12, 2);
+            $table->date('periode_from');
+            $table->date('periode_to');
+            $table->decimal('potongan', 12, 2);
+            $table->decimal('total_gaji', 12, 2);
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreateAbsensi extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('absensi');
+        Schema::dropIfExists('detail_gaji');
     }
 }

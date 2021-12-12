@@ -23,10 +23,10 @@ class DivisiController extends Controller
     }
 
     public function savedivisi(Request $request, $id = null){
-        // $result = [
-        //     'status'  => false,
-        //     'message' => ''
-        // ];
+        $result = [
+            'status'  => false,
+            'message' => ''
+        ];
         try {
             $divisi = $this->findDivisiById($id);
             if (!$divisi) {
@@ -35,8 +35,8 @@ class DivisiController extends Controller
             $divisi->divisi       = $request->divisi;
             $divisi->save();
 
-            // $result['status']  = true;
-            // $result['message'] = 'save karyawan success';
+            $result['status']  = true;
+            $result['message'] = 'save divisi success';
             return redirect('/admin/divisi');
         } catch (\exception $e) {
             $result['message'] = 'function savedivisi() fail => ' . $e->getMessage();
