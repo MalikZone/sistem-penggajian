@@ -49,7 +49,7 @@ Route::prefix('admin')->group(function(){
         Route::get('/', 'DetailGajiController@index')->name('detail-gaji');
         // Route::get('/form-detail-gaji/{id?}', 'DetailGajiController@formGaji')->name('form-detail-gaji');
         Route::post('/generate-detail-gaji', 'DetailGajiController@GenerateGaji');
-        // Route::post('/save-detail-gaji/{id?}', 'DetailGajiController@saveGaji');
+        Route::get('/{id?}', 'DetailGajiController@detailGaji')->name('detail-gaji-karyawan');
     });
 });
 

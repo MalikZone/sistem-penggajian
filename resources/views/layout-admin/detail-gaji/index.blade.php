@@ -21,70 +21,101 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                        <h3 class="card-title">DATA DETAIL GAJI KARYAWAN</h3>
+                        <h3 class="card-title">GENERATE GAJI KARYAWAN</h3>
                     </div>
-                    <!-- /.card-header -->
-                    
                     <div class="card-body">
                         <form action="{{ url('admin/detail-gaji/generate-detail-gaji') }}" method="post">
-                            @csrf
-                            <div class="mb-4">
-                                <label for="tgl_lahir">Tanggal Periode Awal</label>
-                                <input type="date" name="periode_form" placeholder="periode..." class="form-control" value="">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-4">
+                                                <label for="tgl_lahir">Tanggal Periode Awal</label>
+                                                <input type="date" name="periode_form" placeholder="periode..." class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-4">
+                                                <label for="tgl_lahir">Tanggal Periode Akhir</label>
+                                                <input type="date" name="periode_to" placeholder="periode..." class="form-control" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="glyphicon glyphicon-floppy-saved">Generate Gaji</i>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="mb-4">
-                                <label for="tgl_lahir">Tanggal Periode Akhir</label>
-                                <input type="date" name="periode_to" placeholder="periode..." class="form-control" value="">
-                            </div>
-                            <button type="submit" class="btn btn-success">
-                                <i class="glyphicon glyphicon-floppy-saved">Generate Gaji</i>
-                            </button>
                         </form>
-                        {{-- <a href="{{route('generate-detail-gaji')}}" class="btn btn-success" style="margin-bottom: 20px">
-                            <i class="fa fa-plus">Generate Gaji</i>
-                        </a> --}}
-                        <div class="table-responsive">
-                            <table id="tabel-data" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Karyawan</th>
-                                        <th>Periode</th>
-                                        <th>Gaji Pokok</th>
-                                        <th>Potongan</th>
-                                        <th>Total Gaji</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                    @forelse ($detailGaji as $key => $item)
-                                        <tr>
-                                            <td>{{$item->id}}</td>
-                                            <td>{{$item->karyawan->nama}}</td>
-                                            <td>{{$item->periode_from.' - '.$item->periode_to}}</td>
-                                            <td>{{number_format($item->karyawan->gaji->gaji, 0)}}</td>
-                                            <td>{{number_format($item->potongan, 0)}}</td>
-                                            <td>{{number_format($item->total_gaji,0)}}</td>
-                                            {{-- <td class="text-center">
-                                                <a href="{{url('admin/gaji/form-gaji/' . $item->id)}}" class="btn btn-primary">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                            </td> --}}
-                                            <td class="text-center">
-                                                <a href="#" class="btn btn-primary">
-                                                    <i class="fa fa-edit">detail</i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="3" class="text-center">Data Kosong</td>
-                                        </tr>
-                                    @endforelse
-                                </thead>
-                            </table>
-                        </div>
-                        
                     </div>
                 </div>   
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h3 class="card-title">DETAIL GAJI KARYAWAN</h3>
+                </div>
+                <div class="card-header">
+                    <div>
+                        <a href="{{route('form-divisi')}}" class="btn btn-sm btn-success" style="margin-bottom: 20px">
+                            <i class="fa fa-plus">Tambah Data</i>
+                        </a>
+                    </div>
+  
+                    {{-- <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div> --}}
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Karyawan</th>
+                                <th>Periode</th>
+                                <th>Gaji Pokok</th>
+                                <th>Potongan</th>
+                                <th>Total Gaji</th>
+                                <th>Aksi</th>
+                            </tr>
+                            @forelse ($detailGaji as $key => $item)
+                                <tr>
+                                    <td>{{$item->id}}</td>
+                                    <td>{{$item->karyawan->nama}}</td>
+                                    <td>{{$item->periode_from.' - '.$item->periode_to}}</td>
+                                    <td>{{number_format($item->karyawan->gaji->gaji, 0)}}</td>
+                                    <td>{{number_format($item->potongan, 0)}}</td>
+                                    <td>{{number_format($item->total_gaji,0)}}</td>
+                                    <td class="text-center">
+                                        <a href="{{url('admin/detail-gaji/' . $item->id)}}" class="btn btn-sm btn-primary" target="_blank">
+                                            <i class="fa fa-edit">detail</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="3" class="text-center">Data Kosong</td>
+                                </tr>
+                            @endforelse
+                        </thead>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
             </div>
         </div>
     </div>

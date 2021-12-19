@@ -66,4 +66,15 @@ class DetailGajiController extends Controller
         }
         return redirect()->back();
     }
+
+    public function detailGaji($id){
+        $detailGaji = DetailGaji::with(['karyawan'])
+                        ->orderBy('id', 'DESC')
+                        ->find($id);
+        $absen      = Absensi::with(['karyawan'])
+                        ->whereBetween('tanggal', [$detailGaji->periode_from, $detailGaji->periode_to])
+                        ->where('karyawan_id', $detailGaji->karyawan_id)
+                        ->get();
+        return view('layout-admin.detail-gaji.detail', compact('detailGaji', 'absen'));
+    }
 }

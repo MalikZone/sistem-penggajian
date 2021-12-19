@@ -18,69 +18,81 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between">
-                        <h3 class="card-title">DATA KARYAWAN</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    
-                    <div class="card-body">
-                        <a href="{{route('form-karyawan')}}" class="btn btn-success" style="margin-bottom: 20px">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h3 class="card-title">DATA KARYAWAN</h3>
+                </div>
+                <div class="card-header">
+                    <div>
+                        <a href="{{route('form-karyawan')}}" class="btn btn-sm btn-success" style="margin-bottom: 20px">
                             <i class="fa fa-plus">Tambah Data</i>
                         </a>
-                        <div class="table-responsive">
-                            <table id="tabel-data" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Nama</th>
-                                        <th>Divisi</th>
-                                        <th>Tanggal Lahir</th>
-                                        <th>Email</th>
-                                        <th>Telepon</th>
-                                        <th>Alamat</th>
-                                        <th>Jender</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                    @forelse ($karyawan as $key => $item)
-                                        <tr>
-                                            {{-- <td>{{$key + 1}}</td> --}}
-                                            <td>{{$item->id}}</td>
-                                            <td>{{$item->nama}}</td>
-                                            <td>{{$item->divisi->divisi}}</td>
-                                            <td>{{$item->tgl_lahir}}</td>
-                                            <td>{{$item->email}}</td>
-                                            <td>{{$item->telepon}}</td>
-                                            <td>{{$item->alamat}}</td>
-                                            <td>{{$item->jender}}</td>
-                                            <td class="text-center">
-                                                <a href="{{url('admin/karyawan/form-karyawan/' . $item->id)}}" class="btn btn-primary">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                {{-- <a href="{{url('admin/karyawan/delete-karyawan/' . $item->id)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-danger">
-                                                    <i class="fa fa-edit"></i>
-                                                </a> --}}
-                                                {{-- <form action="{{url('admin/karyawan/delete-karyawan/' . $item->id)}}" method="post" onclick="return confirm('Hapus Data ?')">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button class="btn btn-danger">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </form> --}}
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="3" class="text-center">Data Kosong</td>
-                                        </tr>
-                                    @endforelse
-                                </thead>
-                            </table>
-                        </div>
-                        
                     </div>
-                </div>   
+  
+                    {{-- <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div> --}}
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nama</th>
+                                <th>Divisi</th>
+                                <th>Tanggal Lahir</th>
+                                <th>Email</th>
+                                <th>Telepon</th>
+                                <th>Alamat</th>
+                                <th>Jender</th>
+                                <th>Aksi</th>
+                            </tr>
+                            @forelse ($karyawan as $key => $item)
+                                <tr>
+                                    {{-- <td>{{$key + 1}}</td> --}}
+                                    <td>{{$item->id}}</td>
+                                    <td>{{$item->nama}}</td>
+                                    <td>{{$item->divisi->divisi}}</td>
+                                    <td>{{$item->tgl_lahir}}</td>
+                                    <td>{{$item->email}}</td>
+                                    <td>{{$item->telepon}}</td>
+                                    <td>{{$item->alamat}}</td>
+                                    <td>{{$item->jender}}</td>
+                                    <td class="text-center">
+                                        <a href="{{url('admin/karyawan/form-karyawan/' . $item->id)}}" class="btn btn-primary">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        {{-- <a href="{{url('admin/karyawan/delete-karyawan/' . $item->id)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-danger">
+                                            <i class="fa fa-edit"></i>
+                                        </a> --}}
+                                        {{-- <form action="{{url('admin/karyawan/delete-karyawan/' . $item->id)}}" method="post" onclick="return confirm('Hapus Data ?')">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-danger">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form> --}}
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="3" class="text-center">Data Kosong</td>
+                                </tr>
+                            @endforelse
+                        </thead>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
             </div>
         </div>
     </div>

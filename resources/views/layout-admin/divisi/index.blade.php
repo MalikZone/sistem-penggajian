@@ -18,46 +18,58 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between">
-                        <h3 class="card-title">DATA DIVISI</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    
-                    <div class="card-body">
-                        <a href="{{route('form-divisi')}}" class="btn btn-success" style="margin-bottom: 20px">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h3 class="card-title">DATA DIVISI</h3>
+                </div>
+                <div class="card-header">
+                    <div>
+                        <a href="{{route('form-divisi')}}" class="btn btn-sm btn-success" style="margin-bottom: 20px">
                             <i class="fa fa-plus">Tambah Data</i>
                         </a>
-                        <div class="table-responsive">
-                            <table id="tabel-data" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>divisi</th>
-                                        <th>aksi</th>
-                                    </tr>
-                                    @forelse ($divisi as $key => $item)
-                                        <tr>
-                                            <td>{{$item->id}}</td>
-                                            <td>{{$item->divisi}}</td>
-                                            <td class="text-center">
-                                                <a href="{{url('admin/divisi/form-divisi/' . $item->id)}}" class="btn btn-primary">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="3" class="text-center">Data Kosong</td>
-                                        </tr>
-                                    @endforelse
-                                </thead>
-                            </table>
-                        </div>
-                        
                     </div>
-                </div>   
+  
+                    {{-- <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div> --}}
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>divisi</th>
+                                <th>aksi</th>
+                            </tr>
+                            @forelse ($divisi as $key => $item)
+                                <tr>
+                                    <td>{{$item->id}}</td>
+                                    <td>{{$item->divisi}}</td>
+                                    <td class="text-center">
+                                        <a href="{{url('admin/divisi/form-divisi/' . $item->id)}}" class="btn btn-primary">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="3" class="text-center">Data Kosong</td>
+                                </tr>
+                            @endforelse
+                        </thead>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
             </div>
         </div>
     </div>
