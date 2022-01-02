@@ -9,7 +9,9 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('admin/dist/img/AdminLTELogo.jpg') }}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('images/kota-tangerang.png') }}" class="img-circle elevation-2" alt="User Image">
+          <br>
+          <h5 style="color: white;">Dispora Kota Tangerang</h5>
         </div>
         <div class="info">
           <a href="#" class="d-block"></a>
@@ -22,7 +24,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link @yield('dashboard') ">
+            <a href="{{ url('/admin')}}" class="nav-link @yield('dashboard') ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard

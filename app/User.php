@@ -43,8 +43,8 @@ class User extends Authenticatable
     //     $this->attributes['password'] = Hash::make($password);
     // }
 
-    public function getAuthPassword()
-    {
-        return $this->PASSWORD;
-    }
+    // public function getAuthPassword()
+    // {
+    //     return $this->PASSWORD;
+    // }
 }

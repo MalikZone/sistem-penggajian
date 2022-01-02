@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Exception;
 
 class KaryawanController extends Controller
 {
@@ -79,14 +80,13 @@ class KaryawanController extends Controller
     public function storeKaryawan(Request $request)
     {
         try {
-            DB::beginTransaction();
             $user = new User();
             $user->name = $request->nama;
             $user->email = $request->email;
             $user->role = "karyawan";
             $user->password = Hash::make('q1w2e3r4');
             $user->save();
-
+            
             $karyawan = new Karyawan();
             $karyawan->nama       = $request->nama;
             $karyawan->tgl_lahir  = $request->tgl_lahir;
@@ -97,9 +97,8 @@ class KaryawanController extends Controller
             $karyawan->alamat     = $request->alamat;
             $karyawan->jender     = $request->jender;
             $karyawan->save();
-            DB::commit();
             return redirect('/admin/karyawan');
-        } catch (\Throwable $th) {
+        } catch (Exception $e) {
             //throw $th;
         }
         
