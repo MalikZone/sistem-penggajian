@@ -62,10 +62,18 @@
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="detail-gaji" class="nav-link">
+            <a href="{{route('detail-gaji')}}" class="nav-link">
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 Detail Gaji
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="{{route('potongan')}}" class="nav-link">
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                Potongan
               </p>
             </a>
           </li>

@@ -14,6 +14,12 @@ class AbsensiController extends Controller
             ->find($id);
     }
 
+    public function absenOnDate($id, $date){
+        return Absensi::with([])
+            ->where('karyawan_id', $id )
+            ->Where('tanggal', $date)->first();
+    }
+
     public function index(){
         $absensi = Absensi::with(['karyawan'])
                     ->orderBy('id', 'DESC')
@@ -36,6 +42,10 @@ class AbsensiController extends Controller
             $absensi = $this->findAbsensiById($id);
             if (!$absensi) {
                 $absensi         = new Absensi();
+                $absenOnDate     = $this->absenOnDate($request->karyawan_id, $request->tgl_absen);
+                if ($absenOnDate) {
+                    return redirect()->back()->with(['error' => 'anda tidak bisa melakukan absensi lebih dari sekali']);
+                }
             }
             $absensi->karyawan_id   = $request->karyawan_id;
             $absensi->tanggal       = $request->tgl_absen;

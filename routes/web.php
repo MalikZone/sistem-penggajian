@@ -51,6 +51,12 @@ Route::prefix('admin')->group(function(){
         Route::post('/generate-detail-gaji', 'DetailGajiController@GenerateGaji');
         Route::get('/{id?}', 'DetailGajiController@detailGaji')->name('detail-gaji-karyawan');
     });
+
+    Route::prefix('potongan')->group(function(){
+        Route::get('/', 'PotonganController@index')->name('potongan');
+        Route::get('/form-potongan/{id?}', 'PotonganController@formPotongan')->name('form-potongan');
+        Route::post('/save-potongan/{id?}', 'PotonganController@savePotongan');
+    });
 });
 
 // Route::get('/example-page', function () {

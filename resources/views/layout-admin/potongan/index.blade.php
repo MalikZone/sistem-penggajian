@@ -21,11 +21,11 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h3 class="card-title">DATA KARYAWAN</h3>
+                    <h3 class="card-title">DATA POTONGAN</h3>
                 </div>
                 <div class="card-header">
                     <div>
-                        <a href="{{route('form-karyawan')}}" class="btn btn-sm btn-success" style="margin-bottom: 20px">
+                        <a href="{{route('form-potongan')}}" class="btn btn-sm btn-success" style="margin-bottom: 20px">
                             <i class="fa fa-plus">Tambah Data</i>
                         </a>
                     </div>
@@ -46,40 +46,19 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Nama</th>
-                                <th>Divisi</th>
-                                <th>Tanggal Lahir</th>
-                                <th>Email</th>
-                                <th>Telepon</th>
-                                <th>Alamat</th>
-                                <th>Jender</th>
+                                <th>Keterangan</th>
+                                <th>Jumlah</th>
                                 <th>Aksi</th>
                             </tr>
-                            @forelse ($karyawan as $key => $item)
+                            @forelse ($potongan as $key => $item)
                                 <tr>
-                                    {{-- <td>{{$key + 1}}</td> --}}
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->nama}}</td>
-                                    <td>{{$item->divisi->divisi}}</td>
-                                    <td>{{$item->tgl_lahir}}</td>
-                                    <td>{{$item->email}}</td>
-                                    <td>{{$item->telepon}}</td>
-                                    <td>{{$item->alamat}}</td>
-                                    <td>{{$item->jender}}</td>
+                                    <td>{{$item->keterangan}}</td>
+                                    <td>{{number_format($item->potongan,0)}}</td>
                                     <td class="text-center">
-                                        <a href="{{url('admin/karyawan/form-karyawan/' . $item->id)}}" class="btn btn-primary">
+                                        <a href="{{url('admin/potongan/form-potongan/' . $item->id)}}" class="btn btn-primary">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        {{-- <a href="{{url('admin/karyawan/delete-karyawan/' . $item->id)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </a> --}}
-                                        {{-- <form action="{{url('admin/karyawan/delete-karyawan/' . $item->id)}}" method="post" onclick="return confirm('Hapus Data ?')">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="btn btn-danger">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form> --}}
                                     </td>
                                 </tr>
                             @empty
