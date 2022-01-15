@@ -46,6 +46,14 @@
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
+            <a href="{{url('admin/golongan')}}" class="nav-link">
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                Golongan
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
             <a href="{{route('absensi')}}" class="nav-link">
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
