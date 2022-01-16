@@ -50,18 +50,46 @@
                                     </select>
                                 </div>
 
-                                <div class="mb-4">
-                                    <label for="tgl_lahir">Tanggal Absen</label>
-                                    <input type="date" name="tgl_absen" placeholder="tanggal absen..." class="form-control" value="{{isset($absensi) ? $absensi->tanggal : ''}}">
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <label for="tgl_lahir">Tanggal Periode Awal</label>
+                                        <input type="date" name="periode_awal" placeholder="tanggal absen..." class="form-control" value="{{isset($absensi) ? $absensi->periode_from : ''}}">
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <label for="tgl_lahir">Tanggal Periode Akhir</label>
+                                        <input type="date" name="periode_akhir" placeholder="tanggal absen..." class="form-control" value="{{isset($absensi) ? $absensi->periode_to : ''}}">
+                                    </div>
                                 </div>
 
-                                <div class="mb-4">
-                                    <label for="clock_in">Keterangan</label>
-                                    <select class="form-control" name="keterangan">
-                                    <option>-- keterangan --</option>
-                                    <option value="tanpa keterangan" {{isset($absensi) && $absensi->keterangan == 'tanpa keterangan' ? 'selected' : ''}}>Tanpa Keterangan</option>
-                                    <option value="telat" {{isset($absensi) && $absensi->keterangan == 'telat' ? 'selected' : ''}}>Telat</option>
-                                    </select>
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <label for="no_tlp">Hadir</label>
+                                        <input type="number" name="hadir" placeholder="hadir..." class="form-control" value="{{isset($absensi) ? $absensi->present : ''}}">
+                                    </div>
+    
+                                    <div class="col-md-6 mb-4">
+                                        <label for="no_tlp">Tidak Hadir</label>
+                                        <input type="number" name="tidak_hadir" placeholder="tidak hadir..." class="form-control" value="{{isset($absensi) ? $absensi->absen : ''}}">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <label for="no_tlp">Sakit</label>
+                                        <input type="number" name="sakit" placeholder="sakit..." class="form-control" value="{{isset($absensi) ? $absensi->sick : ''}}">
+                                    </div>
+    
+                                    <div class="col-md-6 mb-4">
+                                        <label for="no_tlp">Terlambat</label>
+                                        <input type="number" name="terlambat" placeholder="terlambat..." class="form-control" value="{{isset($absensi) ? $absensi->late : ''}}">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <label for="no_tlp">Cuti</label>
+                                        <input type="number" name="cuti" placeholder="cuti..." class="form-control" value="{{isset($absensi) ? $absensi->paid_leave : ''}}">
+                                    </div>
                                 </div>
                     
                                 {{-- <div class="">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Divisi;
+use App\Golongan;
 use App\Karyawan;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class KaryawanController extends Controller
     }
 
     public function karyawanList($filters = []){
-        $karyawan = Karyawan::with(['divisi', 'gaji']);
+        $karyawan = Karyawan::with(['divisi', 'gaji', 'golongan']);
         if (isset($filters['nama'])) {
 			$karyawan = $karyawan->where('nama', 'like', '%' . $filters['nama'] . '%');
 		}
@@ -39,7 +40,8 @@ class KaryawanController extends Controller
     public function formKaryawan($id = null){
         $karyawan = $this->findKaryawanById($id);
         $divisi   = Divisi::all();
-        return view('layout-admin.karyawan.form', compact('karyawan', 'divisi'));
+        $golongan = Golongan::all();
+        return view('layout-admin.karyawan.form', compact('karyawan', 'divisi', 'golongan'));
     }
 
     public function saveKaryawan(Request $request, $id = null){
@@ -52,13 +54,14 @@ class KaryawanController extends Controller
             if (!$karyawan) {
                 $karyawan         = new Karyawan();
             }
-            $karyawan->nama       = $request->nama;
-            $karyawan->tgl_lahir  = $request->tgl_lahir;
-            $karyawan->divisi_id  = $request->divisi_id;
-            $karyawan->email      = $request->email;
-            $karyawan->telepon    = $request->no_tlp;
-            $karyawan->alamat     = $request->alamat;
-            $karyawan->jender     = $request->jender;
+            $karyawan->divisi_id    = $request->divisi_id;
+            $karyawan->golongan_id  = $request->golongan_id;
+            $karyawan->nama         = $request->nama;
+            $karyawan->tgl_lahir    = $request->tgl_lahir;
+            $karyawan->email        = $request->email;
+            $karyawan->telepon      = $request->no_tlp;
+            $karyawan->alamat       = $request->alamat;
+            $karyawan->jender       = $request->jender;
             $karyawan->save();
 
             $result['status']  = true;

@@ -50,6 +50,16 @@
                                 </div>
 
                                 <div class="mb-4">
+                                    <label for="nama_karyawan">Golongan</label>
+                                    <select class="form-control" name="golongan_id">
+                                    <option>--pilih Golongan--</option>
+                                    @foreach ($golongan as $item)
+                                        <option value="{{$item->id}}">{{$item->golongan}}</option>   
+                                    @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="mb-4">
                                     <label for="tgl_lahir">Tanggal Lahir</label>
                                     <input type="date" name="tgl_lahir" placeholder="tanggal lahir..." class="form-control" value="{{isset($karyawan) ? $karyawan->tgl_lahir : ''}}">
                                 </div>

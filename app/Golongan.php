@@ -8,4 +8,8 @@ class Golongan extends Model
 {
     protected $guarded = [];
 
+    public function karyawan()
+    {
+        return $this->hasMany(Karyawan::class);
+    }
 }

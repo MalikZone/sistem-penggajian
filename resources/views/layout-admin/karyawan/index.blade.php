@@ -91,6 +91,7 @@
                                 <th>Id</th>
                                 <th>Nama</th>
                                 <th>Divisi</th>
+                                <th>Golongan</th>
                                 <th>Tanggal Lahir</th>
                                 <th>Email</th>
                                 <th>Telepon</th>
@@ -104,6 +105,7 @@
                                     <td>{{$item->id}}</td>
                                     <td>{{$item->nama}}</td>
                                     <td>{{$item->divisi->divisi}}</td>
+                                    <td>{{$item->golongan->golongan}}</td>
                                     <td>{{$item->tgl_lahir}}</td>
                                     <td>{{$item->email}}</td>
                                     <td>{{$item->telepon}}</td>
