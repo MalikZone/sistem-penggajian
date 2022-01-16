@@ -29,8 +29,14 @@ Route::prefix('admin')->group(function(){
 
     Route::prefix('absensi')->group(function(){
         Route::get('/', 'AbsensiController@index')->name('absensi');
-        Route::get('/form-absensi/{id?}', 'AbsensiController@formAbsensi')->name('form-absensi');
+        Route::get('/form-absensi/{id?}', 'AbsensiConrtroller@formAbsensi')->name('form-absensi');
         Route::post('/save-absensi/{id?}', 'AbsensiController@saveAbsensi');
+    });
+
+    Route::prefix('golongan')->group(function(){
+        Route::get('/', 'GolonganController@index');
+        Route::post('/store-golongan/{id?}', 'GolonganController@store');
+        Route::get('/delete-golongan/{id?}', 'GolonganController@delete');
     });
 
     Route::prefix('divisi')->group(function(){
