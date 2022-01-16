@@ -33,7 +33,7 @@
             <a href="{{route('karyawan')}}" class="nav-link">
               <i class="nav-icon fas fa-id-card"></i>
               <p>
-                Data Karyawan
+                Data Pegawai
               </p>
             </a>
           </li>

@@ -18,6 +18,49 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <h3 class="card-title">SEARCH DATA KARYAWAN</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url('admin/karyawan') }}" method="get">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="mb-4">
+                                                <label for="tgl_lahir">Nama</label>
+                                                <input type="text" name="nama" placeholder="Nama..." class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-4">
+                                                <label for="tgl_lahir">Email</label>
+                                                <input type="text" name="email" placeholder="Email..." class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-4">
+                                                <label for="tgl_lahir">Telepon</label>
+                                                <input type="text" name="telepon" placeholder="Telepon..." class="form-control" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="glyphicon glyphicon-floppy-saved">Search</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
             <div class="col-12">
               <div class="card">
                 <div class="card-header d-flex justify-content-between">

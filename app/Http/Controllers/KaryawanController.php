@@ -14,8 +14,25 @@ class KaryawanController extends Controller
             ->find($id);
     }
 
-    public function index(){
-        $karyawan = Karyawan::with(['divisi', 'gaji'])->get();
+    public function karyawanList($filters = []){
+        $karyawan = Karyawan::with(['divisi', 'gaji']);
+        if (isset($filters['nama'])) {
+			$karyawan = $karyawan->where('nama', 'like', '%' . $filters['nama'] . '%');
+		}
+
+		if (isset($filters['email'])) {
+			$karyawan = $karyawan->where("email", "LIKE" ,"%".$filters['email']."%");
+        }
+        
+        return $karyawan->get();
+    }
+
+    public function index(Request $request){
+        $filters    = $request->only([
+            'nama','email','telepon'
+        ]);
+        $karyawan       = $this->karyawanList($filters);
+        // $karyawan = Karyawan::with(['divisi', 'gaji'])->get();
         return view('layout-admin.karyawan.index', compact('karyawan'));
     }
 
