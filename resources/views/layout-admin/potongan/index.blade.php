@@ -21,11 +21,11 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h3 class="card-title">DATA ABSENSI</h3>
+                    <h3 class="card-title">DATA POTONGAN</h3>
                 </div>
                 <div class="card-header">
                     <div>
-                        <a href="{{route('form-absensi')}}" class="btn btn-sm btn-success" style="margin-bottom: 20px">
+                        <a href="{{route('form-potongan')}}" class="btn btn-sm btn-success" style="margin-bottom: 20px">
                             <i class="fa fa-plus">Tambah Data</i>
                         </a>
                     </div>
@@ -46,27 +46,17 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Pegawai</th>
-                                <th>Periode</th>
-                                <th>Hadir</th>
-                                <th>Tidak Hadir</th>
-                                <th>Sakit</th>
-                                <th>Terlambat</th>
-                                <th>Cuti</th>
+                                <th>Keterangan</th>
+                                <th>Jumlah</th>
                                 <th>Aksi</th>
                             </tr>
-                            @forelse ($absensi as $key => $item)
+                            @forelse ($potongan as $key => $item)
                                 <tr>
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->karyawan->nama}}</td>
-                                    <td>{{$item->periode_from .' - '. $item->periode_to}}</td>
-                                    <td>{{$item->present}}</td>
-                                    <td>{{$item->absen}}</td>
-                                    <td>{{$item->sick}}</td>
-                                    <td>{{$item->late}}</td>
-                                    <td>{{$item->paid_leave}}</td>
+                                    <td>{{$item->keterangan}}</td>
+                                    <td>{{number_format($item->potongan,0)}}</td>
                                     <td class="text-center">
-                                        <a href="{{url('admin/absensi/form-absensi/' . $item->id)}}" class="btn btn-primary">
+                                        <a href="{{url('admin/potongan/form-potongan/' . $item->id)}}" class="btn btn-primary">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                     </td>

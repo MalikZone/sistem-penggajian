@@ -35,7 +35,7 @@
             <a href="{{route('karyawan')}}" class="nav-link">
               <i class="nav-icon fas fa-id-card"></i>
               <p>
-                Data Karyawan
+                Data Pegawai
               </p>
             </a>
           </li>
@@ -44,6 +44,14 @@
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 Divisi
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="{{url('admin/golongan')}}" class="nav-link">
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                Golongan
               </p>
             </a>
           </li>
@@ -64,10 +72,18 @@
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="detail-gaji" class="nav-link">
+            <a href="{{route('detail-gaji')}}" class="nav-link">
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 Detail Gaji
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="{{route('potongan')}}" class="nav-link">
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                Potongan
               </p>
             </a>
           </li>
