@@ -23,6 +23,12 @@
                     <div class="card-header d-flex justify-content-between">
                         <h3 class="card-title">SEARCH DATA KARYAWAN</h3>
                     </div>
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>    
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
                     <div class="card-body">
                         <form action="{{ url('admin/karyawan') }}" method="get">
                             <div class="row">

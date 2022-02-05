@@ -91,7 +91,7 @@
         <div class="row">
             <!-- accepted payments column -->
             <div class="col-6">
-                <p class="lead">Detail Potongan Absensi</p>
+                {{-- <p class="lead">Detail Potongan Absensi</p>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -102,46 +102,16 @@
                         
                     </thead>
                     <tbody>
+                        {{dd($absen)}}
                         @foreach ($absen as $item)
                             <tr>
                                 <td>{{$item->keterangan}}</td>
-                                <td>{{$item->tanggal}}</td>
+                                <td>test</td>
                                 <td>{{number_format($detailGaji->karyawan->gaji->gaji * (1/100), 0)}}</td>
                             </tr>
                         @endforeach
-                        {{-- <tr>
-                            <th>Total</th>
-                            <th></th>
-                            <th>{{number_format($detailGaji->potongan, 0)}}</th>
-                        </tr> --}}
                     </tbody>
-                </table>
-            </div>
-            <!-- /.col -->
-            <div class="col-6">
-                <p class="lead">Periode: {{$detailGaji->periode_from.' - '.$detailGaji->periode_to}}</p>
-
-                <div class="table-responsive">
-                <table class="table">
-                    <tr>
-                    <th style="width:50%">Gaji Pokok:</th>
-                        <td>{{number_format($detailGaji->karyawan->gaji->gaji, 0)}}</td>
-                    </tr>
-                    <tr>
-                        <th>Total Potongan:</th>
-                        <td>{{number_format($detailGaji->potongan, 0)}}</td>
-                    </tr>
-                    <tr>
-                        <th>Gaji Diterima:</th>
-                        <td>{{number_format($detailGaji->total_gaji,0)}}</td>
-                    </tr>
-                </table>
-                </div>
-            </div>
-            <!-- /.col -->
-        </div>
-        <div class="row">
-            <div class="col-6">
+                </table> --}}
                 <p class="lead">Detail Potongan Lain-Lain</p>
                 <table class="table table-striped">
                     <thead>
@@ -167,7 +137,52 @@
                     </tbody>
                 </table>
             </div>
+            <!-- /.col -->
+            <div class="col-6">
+                <p class="lead">Periode: {{$detailGaji->periode_from.' - '.$detailGaji->periode_to}}</p>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                        <th style="width:50%">Gaji Pokok:</th>
+                            <td>{{number_format($detailGaji->karyawan->gaji->gaji, 0)}}</td>
+                        </tr>
+                        <tr>
+                            <th>Total Potongan:</th>
+                            <td>{{number_format($detailGaji->potongan, 0)}}</td>
+                        </tr>
+                        <tr>
+                            <th>Gaji Diterima:</th>
+                            <td>{{number_format($detailGaji->total_gaji,0)}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!-- /.col -->
         </div>
+        {{-- <div class="row">
+            <div class="col-6">
+                <p class="lead">Detail Potongan Lain-Lain</p>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Keterangan</th>
+                            <th>Periode</th>
+                            <th>Nominal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($potongan as $item)
+                            <tr>
+                                <td>{{$item->keterangan}}</td>
+                                <td>{{$detailGaji->periode_from.' - '.$detailGaji->periode_to}}</td>
+                                <td>{{$item->potongan}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div> --}}
         <!-- /.row -->
 
         <!-- this row will not appear when printing -->

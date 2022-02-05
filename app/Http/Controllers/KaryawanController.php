@@ -66,10 +66,10 @@ class KaryawanController extends Controller
 
             $result['status']  = true;
             $result['message'] = 'save karyawan success';
-            return redirect('/admin/karyawan');
+            return redirect('/admin/karyawan')->with(['success' => $result['message']]);
         } catch (\exception $e) {
-            $result['message'] = 'function saveKaryawan() fail => ' . $e;
-            return redirect()->back();
+            $result['message'] = 'function saveKaryawan() fail => ' . $e->getMessage();
+            return redirect()->back()->with(['error' => $result['message']]);
         }
     }
 

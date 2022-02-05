@@ -141,8 +141,9 @@ class DetailGajiController extends Controller
                         ->orderBy('id', 'DESC')
                         ->find($id);
         $absen      = Absensi::with(['karyawan'])
-                        ->whereBetween('tanggal', [$detailGaji->periode_from, $detailGaji->periode_to])
-                        ->where('karyawan_id', $detailGaji->karyawan_id)
+                        ->where('periode_from', $detailGaji->periode_to)
+                        ->orWhere('periode_to', $detailGaji->periode_to)
+                        ->orWhere('karyawan_id', $detailGaji->karyawan_id)
                         ->get();
         $potongan   = Potongan::with([])->get();
         return view('layout-admin.detail-gaji.detail', compact('detailGaji', 'absen', 'potongan'));
