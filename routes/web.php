@@ -53,9 +53,11 @@ Route::prefix('admin')->group(function(){
 
     Route::prefix('detail-gaji')->group(function(){
         Route::get('/', 'DetailGajiController@index')->name('detail-gaji');
-        // Route::get('/form-detail-gaji/{id?}', 'DetailGajiController@formGaji')->name('form-detail-gaji');
         Route::post('/generate-detail-gaji', 'DetailGajiController@GenerateGaji');
-        Route::get('/{id?}', 'DetailGajiController@detailGaji')->name('detail-gaji-karyawan');
+        Route::get('/export-excel', 'DetailGajiController@getExcel')->name('excel');
+        // Route::get('/form-detail-gaji/{id?}', 'DetailGajiController@formGaji')->name('form-detail-gaji');
+        Route::get('/detail/{id?}', 'DetailGajiController@detailGaji')->name('detail-gaji-karyawan');
+        Route::get('/print-pdf/{id}', 'DetailGajiController@pdf')->name('print');
     });
 
     Route::prefix('potongan')->group(function(){

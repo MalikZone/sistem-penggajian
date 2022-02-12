@@ -56,6 +56,58 @@
 
     <div class="container-fluid">
         <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <h3 class="card-title">FILTER GAJI KARYAWAN</h3>
+                    </div>
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>    
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+                    <div class="card-body">
+                        <form action="{{ url('admin/detail-gaji') }}" method="get">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-4">
+                                                <label for="tgl_lahir">Tanggal Periode Awal</label>
+                                                <input type="date" name="periode_from" placeholder="periode..." class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-4">
+                                                <label for="tgl_lahir">Tanggal Periode Akhir</label>
+                                                <input type="date" name="periode_to" placeholder="periode..." class="form-control" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="glyphicon glyphicon-floppy-saved">Filter</i>
+                                    </button>
+                                    @php
+                                        $params = '';
+                                        if (isset($filters['periode_from']) && isset($filters['periode_to'])) {
+                                            $params = 'periode_from='.$filters['periode_from'].'&'.'periode_to='.$filters['periode_to'];
+                                        }
+                                    @endphp
+                                    <a href="{{ url('admin/detail-gaji/export-excel?'.$params)}}" type="submit" class="btn btn-primary">
+                                        <i class="glyphicon glyphicon-floppy-saved">export excel</i>
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
             <div class="col-12">
               <div class="card">
                 <div class="card-header d-flex justify-content-between">
@@ -100,7 +152,7 @@
                                     <td>{{number_format($item->potongan, 0)}}</td>
                                     <td>{{number_format($item->total_gaji,0)}}</td>
                                     <td class="text-center">
-                                        <a href="{{url('admin/detail-gaji/' . $item->id)}}" class="btn btn-sm btn-primary" target="_blank">
+                                        <a href="{{url('admin/detail-gaji/detail/' . $item->id)}}" class="btn btn-sm btn-primary" target="_blank">
                                             <i class="fa fa-edit">detail</i>
                                         </a>
                                     </td>
