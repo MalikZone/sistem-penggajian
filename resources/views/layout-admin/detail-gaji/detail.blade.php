@@ -55,31 +55,31 @@
     
             <!-- Table row -->
             <div class="row">
-            <div class="col-12 table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Karyawan</th>
-                            <th>Periode</th>
-                            <th>Gaji Pokok</th>
-                            <th>Potongan</th>
-                            <th>Total Gaji</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{$detailGaji->id}}</td>
-                            <td>{{$detailGaji->karyawan->nama}}</td>
-                            <td>{{$detailGaji->periode_from.' - '.$detailGaji->periode_to}}</td>
-                            <td>{{number_format($detailGaji->karyawan->gaji->gaji, 0)}}</td>
-                            <td>{{number_format($detailGaji->potongan, 0)}}</td>
-                            <td>{{number_format($detailGaji->total_gaji,0)}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- /.col -->
+                <div class="col-12 table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Karyawan</th>
+                                <th>Periode</th>
+                                <th>Gaji Pokok</th>
+                                <th>Potongan</th>
+                                <th>Total Gaji</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{$detailGaji->id}}</td>
+                                <td>{{$detailGaji->karyawan->nama}}</td>
+                                <td>{{$detailGaji->periode_from.' - '.$detailGaji->periode_to}}</td>
+                                <td>{{number_format($detailGaji->karyawan->gaji->gaji, 0)}}</td>
+                                <td>{{number_format($detailGaji->potongan, 0)}}</td>
+                                <td>{{number_format($detailGaji->total_gaji,0)}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.col -->
             </div>
             <!-- /.row -->
     
