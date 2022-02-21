@@ -35,6 +35,12 @@ function () {
         Route::post('/save-absensi/{id?}', 'AbsensiController@saveAbsensi');
     });
 
+    Route::prefix('golongan')->group(function(){
+        Route::get('/', 'GolonganController@index');
+        Route::post('/store-golongan/{id?}', 'GolonganController@store');
+        Route::get('/delete-golongan/{id?}', 'GolonganController@delete');
+    });
+
     Route::prefix('divisi')->group(function(){
         Route::get('/', 'DivisiController@index')->name('divisi');
         Route::get('/form-divisi/{id?}', 'DivisiController@formDivisi')->name('form-divisi');
@@ -49,9 +55,17 @@ function () {
 
     Route::prefix('detail-gaji')->group(function(){
         Route::get('/', 'DetailGajiController@index')->name('detail-gaji');
-        // Route::get('/form-detail-gaji/{id?}', 'DetailGajiController@formGaji')->name('form-detail-gaji');
         Route::post('/generate-detail-gaji', 'DetailGajiController@GenerateGaji');
-        Route::get('/{id?}', 'DetailGajiController@detailGaji')->name('detail-gaji-karyawan');
+        Route::get('/export-excel', 'DetailGajiController@getExcel')->name('excel');
+        // Route::get('/form-detail-gaji/{id?}', 'DetailGajiController@formGaji')->name('form-detail-gaji');
+        Route::get('/detail/{id?}', 'DetailGajiController@detailGaji')->name('detail-gaji-karyawan');
+        Route::get('/print-pdf/{id}', 'DetailGajiController@pdf')->name('print');
+    });
+
+    Route::prefix('potongan')->group(function(){
+        Route::get('/', 'PotonganController@index')->name('potongan');
+        Route::get('/form-potongan/{id?}', 'PotonganController@formPotongan')->name('form-potongan');
+        Route::post('/save-potongan/{id?}', 'PotonganController@savePotongan');
     });
 });
 

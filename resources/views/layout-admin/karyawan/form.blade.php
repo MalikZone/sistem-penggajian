@@ -28,6 +28,12 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
+                            @if ($message = Session::get('error'))
+                                <div class="alert alert-danger alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>    
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                            @endif
                             @if (!isset($karyawan))
                                 <form action="{{url('admin/karyawan/store-karyawan')}}" method="post">
                             @else
@@ -46,6 +52,16 @@
                                     <option>--pilih Divisi--</option>
                                     @foreach ($divisi as $item)
                                         <option value="{{$item->id}}" {{isset($karyawan->divisi_id) && $item->id == $karyawan->divisi_id ? 'selected' : ''}}>{{$item->divisi}}</option>   
+                                    @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="nama_karyawan">Golongan</label>
+                                    <select class="form-control" name="golongan_id">
+                                    <option>--pilih Golongan--</option>
+                                    @foreach ($golongan as $item)
+                                        <option value="{{$item->id}}">{{$item->golongan}}</option>   
                                     @endforeach
                                     </select>
                                 </div>

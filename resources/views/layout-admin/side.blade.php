@@ -24,7 +24,11 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
+<<<<<<< HEAD
             <a href="{{ url('/admin')}}" class="nav-link @yield('dashboard') ">
+=======
+            <a href="{{route('dashboard')}}" class="nav-link @yield('dashboard') ">
+>>>>>>> 882927f81cf3c8d37d0772a547be63704a1462d2
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -35,7 +39,7 @@
             <a href="{{route('karyawan')}}" class="nav-link">
               <i class="nav-icon fas fa-id-card"></i>
               <p>
-                Data Karyawan
+                Data Pegawai
               </p>
             </a>
           </li>
@@ -44,6 +48,14 @@
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 Divisi
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="{{url('admin/golongan')}}" class="nav-link">
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                Golongan
               </p>
             </a>
           </li>
@@ -64,10 +76,18 @@
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="detail-gaji" class="nav-link">
+            <a href="{{route('detail-gaji')}}" class="nav-link">
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 Detail Gaji
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="{{route('potongan')}}" class="nav-link">
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                Potongan
               </p>
             </a>
           </li>

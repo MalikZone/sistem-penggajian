@@ -5,7 +5,7 @@
 @endsection
 
 @section('example-page', 'active')
-@section('title', '| Data Karyawan')
+@section('title', '| Data Golongan')
 
 @section('judul')
     <h1>Tabel Data </h1>
@@ -21,19 +21,13 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h3 class="card-title">DATA ABSENSI</h3>
+                    <h3 class="card-title">DATA GOLONGAN</h3>
                 </div>
                 <div class="card-header">
-                    @if ($message = Session::get('success'))
-                        <div class="alert alert-success alert-block">
-                            <button type="button" class="close" data-dismiss="alert">×</button>    
-                            <strong>{{ $message }}</strong>
-                        </div>
-                    @endif
                     <div>
-                        <a href="{{route('form-absensi')}}" class="btn btn-sm btn-success" style="margin-bottom: 20px">
-                            <i class="fa fa-plus">Tambah Data</i>
-                        </a>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Tambah Data
+                        </button>
                     </div>
   
                     {{-- <div class="card-tools">
@@ -46,43 +40,61 @@
                         </div>
                     </div> --}}
                 </div>
+
+                <!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add GOLONGAN</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ url('admin/golongan/store-golongan') }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="golongan">Golongan</label>
+                                    <input id="golongan" type="text" class="form-control" name="golongan" placeholder="Golongan" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tunjangan">Tunjangan</label>
+                                    <input type="number" class="form-control" name="tunjangan" id="tunjangan" placeholder="tunjangan" required>
+                                </div>
+                                <button type="submit" class="formcontrol btn btn-primary">Simpan</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Pegawai</th>
-                                <th>Periode</th>
-                                <th>Hadir</th>
-                                <th>Tidak Hadir</th>
-                                <th>Sakit</th>
-                                <th>Terlambat</th>
-                                <th>Cuti</th>
+                                <th>No</th>
+                                <th>Golongan</th>
+                                <th>Tunjangan</th>
                                 <th>Aksi</th>
                             </tr>
-                            @forelse ($absensi as $key => $item)
-                                <tr>
-                                    <td>{{$item->id}}</td>
-                                    <td>{{$item->karyawan->nama}}</td>
-                                    <td>{{$item->periode_from .' - '. $item->periode_to}}</td>
-                                    <td>{{$item->present}}</td>
-                                    <td>{{$item->absen}}</td>
-                                    <td>{{$item->sick}}</td>
-                                    <td>{{$item->late}}</td>
-                                    <td>{{$item->paid_leave}}</td>
-                                    <td class="text-center">
-                                        <a href="{{url('admin/absensi/form-absensi/' . $item->id)}}" class="btn btn-primary">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="3" class="text-center">Data Kosong</td>
-                                </tr>
-                            @endforelse
                         </thead>
+                        <tbody>
+                            @foreach ($golongan as $data)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $data->golongan }}</td>
+                                    <td>{{ $data->tunjangan }}</td>
+                                    <td>EDIT</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->

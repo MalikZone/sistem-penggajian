@@ -13,6 +13,11 @@ class Karyawan extends Model
         return $this->belongsTo(Divisi::class);
     }
 
+    public function golongan()
+    {
+        return $this->belongsTo(Golongan::class);
+    }
+
     public function absensi()
     {
         return $this->hasMany(Absensi::class);

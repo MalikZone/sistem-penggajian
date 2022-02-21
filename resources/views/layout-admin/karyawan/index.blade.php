@@ -18,6 +18,55 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <h3 class="card-title">SEARCH DATA KARYAWAN</h3>
+                    </div>
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>    
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+                    <div class="card-body">
+                        <form action="{{ url('admin/karyawan') }}" method="get">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="mb-4">
+                                                <label for="tgl_lahir">Nama</label>
+                                                <input type="text" name="nama" placeholder="Nama..." class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-4">
+                                                <label for="tgl_lahir">Email</label>
+                                                <input type="text" name="email" placeholder="Email..." class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-4">
+                                                <label for="tgl_lahir">Telepon</label>
+                                                <input type="text" name="telepon" placeholder="Telepon..." class="form-control" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="glyphicon glyphicon-floppy-saved">Search</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
             <div class="col-12">
               <div class="card">
                 <div class="card-header d-flex justify-content-between">
@@ -48,6 +97,7 @@
                                 <th>Id</th>
                                 <th>Nama</th>
                                 <th>Divisi</th>
+                                <th>Golongan</th>
                                 <th>Tanggal Lahir</th>
                                 <th>Email</th>
                                 <th>Telepon</th>
@@ -61,6 +111,7 @@
                                     <td>{{$item->id}}</td>
                                     <td>{{$item->nama}}</td>
                                     <td>{{$item->divisi->divisi}}</td>
+                                    <td>{{$item->golongan->golongan}}</td>
                                     <td>{{$item->tgl_lahir}}</td>
                                     <td>{{$item->email}}</td>
                                     <td>{{$item->telepon}}</td>
@@ -71,7 +122,7 @@
                                             <i class="fa fa-edit"></i>
                                         </a>
                                         {{-- <a href="{{url('admin/karyawan/delete-karyawan/' . $item->id)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-danger">
-                                            <i class="fa fa-edit"></i>
+                                            <i class="fa fa-trash"></i>
                                         </a> --}}
                                         {{-- <form action="{{url('admin/karyawan/delete-karyawan/' . $item->id)}}" method="post" onclick="return confirm('Hapus Data ?')">
                                             @csrf

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Divisi;
+use App\Golongan;
 use App\Karyawan;
 use Illuminate\Http\Request;
 use App\User;
@@ -18,15 +19,33 @@ class KaryawanController extends Controller
             ->find($id);
     }
 
-    public function index(){
-        $karyawan = Karyawan::with(['divisi', 'gaji'])->get();
+    public function karyawanList($filters = []){
+        $karyawan = Karyawan::with(['divisi', 'gaji', 'golongan']);
+        if (isset($filters['nama'])) {
+			$karyawan = $karyawan->where('nama', 'like', '%' . $filters['nama'] . '%');
+		}
+
+		if (isset($filters['email'])) {
+			$karyawan = $karyawan->where("email", "LIKE" ,"%".$filters['email']."%");
+        }
+        
+        return $karyawan->get();
+    }
+
+    public function index(Request $request){
+        $filters    = $request->only([
+            'nama','email','telepon'
+        ]);
+        $karyawan       = $this->karyawanList($filters);
+        // $karyawan = Karyawan::with(['divisi', 'gaji'])->get();
         return view('layout-admin.karyawan.index', compact('karyawan'));
     }
 
     public function formKaryawan($id = null){
         $karyawan = $this->findKaryawanById($id);
         $divisi   = Divisi::all();
-        return view('layout-admin.karyawan.form', compact('karyawan', 'divisi'));
+        $golongan = Golongan::all();
+        return view('layout-admin.karyawan.form', compact('karyawan', 'divisi', 'golongan'));
     }
 
     public function saveKaryawan(Request $request, $id = null){
@@ -48,6 +67,7 @@ class KaryawanController extends Controller
             if (!$karyawan) {
                 $karyawan         = new Karyawan();
             }
+<<<<<<< HEAD
 
             $karyawan->nama       = $request->nama;
             $karyawan->tgl_lahir  = $request->tgl_lahir;
@@ -57,15 +77,25 @@ class KaryawanController extends Controller
             $karyawan->telepon    = $request->no_tlp;
             $karyawan->alamat     = $request->alamat;
             $karyawan->jender     = $request->jender;
+=======
+            $karyawan->divisi_id    = $request->divisi_id;
+            $karyawan->golongan_id  = $request->golongan_id;
+            $karyawan->nama         = $request->nama;
+            $karyawan->tgl_lahir    = $request->tgl_lahir;
+            $karyawan->email        = $request->email;
+            $karyawan->telepon      = $request->no_tlp;
+            $karyawan->alamat       = $request->alamat;
+            $karyawan->jender       = $request->jender;
+>>>>>>> 882927f81cf3c8d37d0772a547be63704a1462d2
             $karyawan->save();
             DB::commit();
 
             $result['status']  = true;
             $result['message'] = 'save karyawan success';
-            return redirect('/admin/karyawan');
+            return redirect('/admin/karyawan')->with(['success' => $result['message']]);
         } catch (\exception $e) {
-            $result['message'] = 'function saveKaryawan() fail => ' . $e;
-            return redirect()->back();
+            $result['message'] = 'function saveKaryawan() fail => ' . $e->getMessage();
+            return redirect()->back()->with(['error' => $result['message']]);
         }
     }
 
