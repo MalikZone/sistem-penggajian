@@ -56,19 +56,18 @@ class KaryawanController extends Controller
         ];
         try {
             DB::beginTransaction();
-            $user = new User();
+            $karyawan = $this->findKaryawanById($id);
+            $user = User::with([])->where('id', $karyawan->user_id)->first();
             $user->name = $request->nama;
             $user->email = $request->email;
             $user->role = "karyawan";
             $user->save();
-
             $user->password = Hash::make($request->password);
-            $karyawan = $this->findKaryawanById($id);
             if (!$karyawan) {
                 $karyawan         = new Karyawan();
             }
-<<<<<<< HEAD
 
+            $karyawan->golongan_id  = $request->golongan_id;
             $karyawan->nama       = $request->nama;
             $karyawan->tgl_lahir  = $request->tgl_lahir;
             $karyawan->divisi_id  = $request->divisi_id;
@@ -77,16 +76,6 @@ class KaryawanController extends Controller
             $karyawan->telepon    = $request->no_tlp;
             $karyawan->alamat     = $request->alamat;
             $karyawan->jender     = $request->jender;
-=======
-            $karyawan->divisi_id    = $request->divisi_id;
-            $karyawan->golongan_id  = $request->golongan_id;
-            $karyawan->nama         = $request->nama;
-            $karyawan->tgl_lahir    = $request->tgl_lahir;
-            $karyawan->email        = $request->email;
-            $karyawan->telepon      = $request->no_tlp;
-            $karyawan->alamat       = $request->alamat;
-            $karyawan->jender       = $request->jender;
->>>>>>> 882927f81cf3c8d37d0772a547be63704a1462d2
             $karyawan->save();
             DB::commit();
 
@@ -114,10 +103,11 @@ class KaryawanController extends Controller
             $user->name = $request->nama;
             $user->email = $request->email;
             $user->role = "karyawan";
-            $user->password = Hash::make('q1w2e3r4');
+            $user->password = Hash::make($request->password);
             $user->save();
             
             $karyawan = new Karyawan();
+            $karyawan->golongan_id  = $request->golongan_id;
             $karyawan->nama       = $request->nama;
             $karyawan->tgl_lahir  = $request->tgl_lahir;
             $karyawan->divisi_id  = $request->divisi_id;
@@ -127,9 +117,13 @@ class KaryawanController extends Controller
             $karyawan->alamat     = $request->alamat;
             $karyawan->jender     = $request->jender;
             $karyawan->save();
-            return redirect('/admin/karyawan');
+
+            $result['status']  = true;
+            $result['message'] = 'save karyawan success';
+            return redirect('/admin/karyawan')->with(['success' => $result['message']]);
         } catch (Exception $e) {
-            //throw $th;
+            $result['message'] = 'function saveKaryawan() fail => ' . $e->getMessage();
+            return redirect()->back()->with(['error' => $result['message']]);
         }
         
     }

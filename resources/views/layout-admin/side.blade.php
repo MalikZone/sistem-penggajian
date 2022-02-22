@@ -1,8 +1,5 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <span class="brand-text font-weight-light">Template Admin</span>
-    </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -24,11 +21,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-<<<<<<< HEAD
-            <a href="{{ url('/admin')}}" class="nav-link @yield('dashboard') ">
-=======
             <a href="{{route('dashboard')}}" class="nav-link @yield('dashboard') ">
->>>>>>> 882927f81cf3c8d37d0772a547be63704a1462d2
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
