@@ -24,6 +24,12 @@
                     <h3 class="card-title">DATA ABSENSI</h3>
                 </div>
                 <div class="card-header">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>    
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
                     <div>
                         <a href="{{route('form-absensi')}}" class="btn btn-sm btn-success" style="margin-bottom: 20px">
                             <i class="fa fa-plus">Tambah Data</i>
