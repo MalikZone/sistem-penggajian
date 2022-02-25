@@ -20,17 +20,12 @@ class KaryawanController extends Controller
         if (isset($filters['nama'])) {
 			$karyawan = $karyawan->where('nama', 'like', '%' . $filters['nama'] . '%');
 		}
-
-		if (isset($filters['email'])) {
-			$karyawan = $karyawan->where("email", "LIKE" ,"%".$filters['email']."%");
-        }
-        
         return $karyawan->get();
     }
 
     public function index(Request $request){
         $filters    = $request->only([
-            'nama','email','telepon'
+            'nama'
         ]);
         $karyawan       = $this->karyawanList($filters);
         // $karyawan = Karyawan::with(['divisi', 'gaji'])->get();
@@ -74,11 +69,24 @@ class KaryawanController extends Controller
     }
 
     public function deleteKaryawan($id){
-        $karyawan = $this->findKaryawanById($id);
-        if (!$karyawan) {
-            return 'data karyawan not found';
+        $result = [
+            'status'  => false,
+            'message' => ''
+        ];
+        try {
+            $karyawan = $this->findKaryawanById($id);
+            if (!$karyawan) {
+                return 'data karyawan not found';
+            }
+            $karyawan->delete();
+
+            $result['status']  = true;
+            $result['message'] = 'delete data success';
+            return redirect('/admin/karyawan')->with(['success' => $result['message']]);
+        } catch (\exception $e) {
+            $result['message'] = 'function deleteKaryawan() fail => ' . $e->getMessage();
+            return redirect()->back()->with(['error' => $result['message']]);
         }
-        $karyawan->delete();
     }
 
 }

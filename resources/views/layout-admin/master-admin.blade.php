@@ -89,7 +89,7 @@ to get the desired effect
 
   <!-- Main Footer -->
   <footer class="main-footer">
-    <strong>Di bentuk dan dibesarkan seperti anak sendiri</a>.</strong>
+    {{-- <strong>Di bentuk dan dibesarkan seperti anak sendiri</a>.</strong> --}}
   </footer>
 </div>
 <!-- ./wrapper -->

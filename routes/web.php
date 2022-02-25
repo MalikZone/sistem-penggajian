@@ -24,7 +24,7 @@ Route::prefix('admin')->group(function(){
         Route::get('/', 'KaryawanController@index')->name('karyawan');
         Route::get('/form-karyawan/{id?}', 'KaryawanController@formKaryawan')->name('form-karyawan');
         Route::post('/save-karyawan/{id?}', 'KaryawanController@saveKaryawan');
-        // Route::delete('/delete-karyawan/{id}', 'KaryawanController@deleteKaryawan');
+        Route::delete('/delete-karyawan/{id}', 'KaryawanController@deleteKaryawan');
     });
 
     Route::prefix('absensi')->group(function(){
@@ -49,6 +49,7 @@ Route::prefix('admin')->group(function(){
         Route::get('/', 'GajiController@index')->name('gaji');
         Route::get('/form-gaji/{id?}', 'GajiController@formGaji')->name('form-gaji');
         Route::post('/save-gaji/{id?}', 'GajiController@saveGaji');
+        Route::delete('/delete-gaji/{id}', 'GajiController@deleteGaji');
     });
 
     Route::prefix('detail-gaji')->group(function(){
@@ -64,6 +65,7 @@ Route::prefix('admin')->group(function(){
         Route::get('/', 'PotonganController@index')->name('potongan');
         Route::get('/form-potongan/{id?}', 'PotonganController@formPotongan')->name('form-potongan');
         Route::post('/save-potongan/{id?}', 'PotonganController@savePotongan');
+        Route::delete('/delete-potongan/{id}', 'PotonganController@deletePotongan');
     });
 });
 

@@ -24,6 +24,12 @@
                     <h3 class="card-title">DATA GAJI</h3>
                 </div>
                 <div class="card-header">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>    
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
                     <div>
                         <a href="{{route('form-gaji')}}" class="btn btn-sm btn-success" style="margin-bottom: 20px">
                             <i class="fa fa-plus">Tambah Data</i>
@@ -59,6 +65,13 @@
                                         <a href="{{url('admin/gaji/form-gaji/' . $item->id)}}" class="btn btn-primary">
                                             <i class="fa fa-edit"></i>
                                         </a>
+                                        <form action="{{url('admin/gaji/delete-gaji/' . $item->id)}}" method="post" onclick="return confirm('Hapus Data ?')">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-danger">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @empty

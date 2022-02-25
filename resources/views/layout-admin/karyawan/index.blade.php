@@ -40,18 +40,6 @@
                                                 <input type="text" name="nama" placeholder="Nama..." class="form-control" value="">
                                             </div>
                                         </div>
-                                        <div class="col-lg-4">
-                                            <div class="mb-4">
-                                                <label for="tgl_lahir">Email</label>
-                                                <input type="text" name="email" placeholder="Email..." class="form-control" value="">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="mb-4">
-                                                <label for="tgl_lahir">Telepon</label>
-                                                <input type="text" name="telepon" placeholder="Telepon..." class="form-control" value="">
-                                            </div>
-                                        </div>
                                     </div>
                                     <button type="submit" class="btn btn-success">
                                         <i class="glyphicon glyphicon-floppy-saved">Search</i>
@@ -124,13 +112,13 @@
                                         {{-- <a href="{{url('admin/karyawan/delete-karyawan/' . $item->id)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-danger">
                                             <i class="fa fa-trash"></i>
                                         </a> --}}
-                                        {{-- <form action="{{url('admin/karyawan/delete-karyawan/' . $item->id)}}" method="post" onclick="return confirm('Hapus Data ?')">
+                                        <form action="{{url('admin/karyawan/delete-karyawan/' . $item->id)}}" method="post" onclick="return confirm('Hapus Data ?')">
                                             @csrf
                                             @method('delete')
                                             <button class="btn btn-danger">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                        </form> --}}
+                                        </form>
                                     </td>
                                 </tr>
                             @empty

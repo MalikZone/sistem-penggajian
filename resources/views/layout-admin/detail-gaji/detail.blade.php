@@ -60,7 +60,7 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Karyawan</th>
+                                <th>Pegawai</th>
                                 <th>Periode</th>
                                 <th>Gaji Pokok</th>
                                 <th>Potongan</th>
@@ -139,15 +139,19 @@
                     <div class="table-responsive">
                         <table class="table">
                             <tr>
-                            <th style="width:50%">Gaji Pokok:</th>
+                                <th style="width:50%">Gaji Pokok :</th>
                                 <td>{{number_format($detailGaji->karyawan->gaji->gaji, 0)}}</td>
                             </tr>
                             <tr>
-                                <th>Total Potongan:</th>
+                                <th style="width:50%">Tunjangan Golongan :</th>
+                                <td>{{number_format($detailGaji->karyawan->golongan->tunjangan, 0)}}</td>
+                            </tr>
+                            <tr>
+                                <th>Total Potongan :</th>
                                 <td>{{number_format($detailGaji->potongan, 0)}}</td>
                             </tr>
                             <tr>
-                                <th>Gaji Diterima:</th>
+                                <th>Gaji Diterima :</th>
                                 <td>{{number_format($detailGaji->total_gaji,0)}}</td>
                             </tr>
                         </table>

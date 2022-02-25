@@ -20,6 +20,12 @@
         <div class="row">
             <div class="col-12">
               <div class="card">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
                 <div class="card-header d-flex justify-content-between">
                     <h3 class="card-title">DATA GOLONGAN</h3>
                 </div>
@@ -91,7 +97,53 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $data->golongan }}</td>
                                     <td>{{ $data->tunjangan }}</td>
-                                    <td>EDIT</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editJurnalis{{ $loop->iteration }}">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <div class="modal fade" id="editJurnalis{{ $loop->iteration }}" tabindex="-1" role="dialog" aria-labelledby="editJurnalis{{ $loop->iteration }}Label" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="editJurnalis{{ $loop->iteration }}Label">Edit Golongan :  {{ $data->golongan }}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="POST" action="{{ url('admin/golongan/store-golongan/'.$data->id) }}">
+                                                            @csrf
+                                                            <div class="form-group row">
+                                                                <label for="golongan" class="ml-3">Golongan</label>
+                                                                <div class="col-md-12">
+                                                                    <input id="golongan" type="text" class="form-control @error('golongan') is-invalid @enderror" name="golongan" value="{{ $data->golongan }}" required autocomplete="name" autofocus>
+                                                                    @error('golongan')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-4">
+                                                                <label for="tgl_lahir">Tunjangan</label>
+                                                                <input type="number" name="tunjangan" placeholder="Gaji Pokok..." class="form-control" value="{{$data->tunjangan}}">
+                                                            </div>
+                                    
+                                                            <div class="form-group row mb-0">
+                                                                <div class="col-md-6 offset-md-4">
+                                                                    <button type="submit" class="btn btn-primary">
+                                                                        {{ __('Submit') }}
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

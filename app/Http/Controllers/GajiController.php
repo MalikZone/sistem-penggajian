@@ -40,7 +40,7 @@ class GajiController extends Controller
 
             $result['status']  = true;
             $result['message'] = 'save gaji success';
-            return redirect('/admin/gaji');
+            return redirect('/admin/gaji')->with(['success' => $result['message']]);
         } catch (\exception $e) {
             $result['message'] = 'function saveGaji() fail => ' . $e->getMessage();
             return redirect()->back();
@@ -48,10 +48,23 @@ class GajiController extends Controller
     }
 
     public function deleteGaji($id){
-        $gaji = $this->findGajiById($id);
-        if (!$gaji) {
-            return 'data gaji not found';
+        $result = [
+            'status'  => false,
+            'message' => ''
+        ];
+        try {
+            $gaji = $this->findGajiById($id);
+            if (!$gaji) {
+                return 'data gaji not found';
+            }
+            $gaji->delete();
+
+            $result['status']  = true;
+            $result['message'] = 'delete data success';
+            return redirect('/admin/gaji')->with(['success' => $result['message']]);
+        } catch (\exception $e) {
+            $result['message'] = 'function deleteGaji() fail => ' . $e->getMessage();
+            return redirect()->back()->with(['error' => $result['message']]);
         }
-        $gaji->delete();
     }
 }
