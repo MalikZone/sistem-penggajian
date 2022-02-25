@@ -35,11 +35,12 @@
                                 </div>
                             @endif
                             @if (!isset($karyawan))
-                                <form action="{{url('admin/karyawan/save-karyawan')}}" method="post">
+                                <form action="{{url('admin/karyawan/store-karyawan')}}" method="post">
                             @else
                                 <form action="{{url('admin/karyawan/save-karyawan/' . $karyawan->id)}}" method="post">
                             @endif
-                                @csrf
+                                {{-- @csrf --}}
+                                {{csrf_field()}}
                                 <div class="mb-4">
                                     <label for="nama">Nama</label>
                                     <input type="text" name="nama" placeholder="nama.." class="form-control" value="{{isset($karyawan) ? $karyawan->nama : ''}}">
@@ -78,6 +79,11 @@
                                 <div class="mb-4">
                                     <label for="no_tlp">No Telepon</label>
                                     <input type="text" name="no_tlp" placeholder="telepon..." class="form-control" value="{{isset($karyawan) ? $karyawan->telepon : ''}}">
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="no_tlp">Password</label>
+                                    <input type="password" name="password" placeholder="password..." class="form-control" value="">
                                 </div>
 
                                 <div class="mb-4">

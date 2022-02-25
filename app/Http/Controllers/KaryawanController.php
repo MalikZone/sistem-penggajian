@@ -6,6 +6,10 @@ use App\Divisi;
 use App\Golongan;
 use App\Karyawan;
 use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Exception;
 
 class KaryawanController extends Controller
 {
@@ -40,24 +44,35 @@ class KaryawanController extends Controller
     }
 
     public function saveKaryawan(Request $request, $id = null){
+        // dd($request);
         $result = [
             'status'  => false,
             'message' => ''
         ];
         try {
+            DB::beginTransaction();
             $karyawan = $this->findKaryawanById($id);
+            $user = User::with([])->where('id', $karyawan->user_id)->first();
+            $user->name = $request->nama;
+            $user->email = $request->email;
+            $user->role = "karyawan";
+            $user->save();
+            $user->password = Hash::make($request->password);
             if (!$karyawan) {
                 $karyawan         = new Karyawan();
             }
-            $karyawan->divisi_id    = $request->divisi_id;
+
             $karyawan->golongan_id  = $request->golongan_id;
-            $karyawan->nama         = $request->nama;
-            $karyawan->tgl_lahir    = $request->tgl_lahir;
-            $karyawan->email        = $request->email;
-            $karyawan->telepon      = $request->no_tlp;
-            $karyawan->alamat       = $request->alamat;
-            $karyawan->jender       = $request->jender;
+            $karyawan->nama       = $request->nama;
+            $karyawan->tgl_lahir  = $request->tgl_lahir;
+            $karyawan->divisi_id  = $request->divisi_id;
+            $karyawan->email      = $request->email;
+            $karyawan->user_id    = $user->id;
+            $karyawan->telepon    = $request->no_tlp;
+            $karyawan->alamat     = $request->alamat;
+            $karyawan->jender     = $request->jender;
             $karyawan->save();
+            DB::commit();
 
             $result['status']  = true;
             $result['message'] = 'save karyawan success';
@@ -87,6 +102,38 @@ class KaryawanController extends Controller
             $result['message'] = 'function deleteKaryawan() fail => ' . $e->getMessage();
             return redirect()->back()->with(['error' => $result['message']]);
         }
+    }
+
+    public function storeKaryawan(Request $request)
+    {
+        try {
+            $user = new User();
+            $user->name = $request->nama;
+            $user->email = $request->email;
+            $user->role = "karyawan";
+            $user->password = Hash::make($request->password);
+            $user->save();
+            
+            $karyawan = new Karyawan();
+            $karyawan->golongan_id  = $request->golongan_id;
+            $karyawan->nama       = $request->nama;
+            $karyawan->tgl_lahir  = $request->tgl_lahir;
+            $karyawan->divisi_id  = $request->divisi_id;
+            $karyawan->email      = $request->email;
+            $karyawan->user_id    = $user->id;
+            $karyawan->telepon    = $request->no_tlp;
+            $karyawan->alamat     = $request->alamat;
+            $karyawan->jender     = $request->jender;
+            $karyawan->save();
+
+            $result['status']  = true;
+            $result['message'] = 'save karyawan success';
+            return redirect('/admin/karyawan')->with(['success' => $result['message']]);
+        } catch (Exception $e) {
+            $result['message'] = 'function saveKaryawan() fail => ' . $e->getMessage();
+            return redirect()->back()->with(['error' => $result['message']]);
+        }
+        
     }
 
 }

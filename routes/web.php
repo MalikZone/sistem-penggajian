@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
-Route::prefix('admin')->group(function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], 
+function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
     Route::prefix('karyawan')->group(function(){
@@ -25,6 +26,8 @@ Route::prefix('admin')->group(function(){
         Route::get('/form-karyawan/{id?}', 'KaryawanController@formKaryawan')->name('form-karyawan');
         Route::post('/save-karyawan/{id?}', 'KaryawanController@saveKaryawan');
         Route::delete('/delete-karyawan/{id}', 'KaryawanController@deleteKaryawan');
+        Route::post('/store-karyawan/{id?}', 'KaryawanController@storeKaryawan');
+        // Route::delete('/delete-karyawan/{id}', 'KaryawanController@deleteKaryawan');
     });
 
     Route::prefix('absensi')->group(function(){
@@ -72,3 +75,10 @@ Route::prefix('admin')->group(function(){
 // Route::get('/example-page', function () {
 //     return view('layout-admin.example-page-content');
 // });
+Auth::routes();
+
+Route::get('/', function () {
+    return view('auth.login');
+});
+
+Route::get('/home', 'HomeController@index')->name('home');

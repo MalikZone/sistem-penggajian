@@ -46,7 +46,7 @@ to get the desired effect
     <!-- SEARCH FORM -->
 
     <!-- Right navbar links -->
-    {{-- <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto">
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item">
         <a class="nav-link d-flex justify-content-start">
@@ -57,7 +57,7 @@ to get the desired effect
           <p class="m-2">Logout</p>
         </a>
       </li>
-    </ul> --}}
+    </ul>
   </nav>
   <!-- /.navbar -->
 
@@ -67,7 +67,7 @@ to get the desired effect
   
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="background-image: url('{{ asset('images/lobbydispora.jpg')}}'); background-size: cover;">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
