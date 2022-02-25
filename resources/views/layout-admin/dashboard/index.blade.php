@@ -18,6 +18,23 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
+            <div class="col-lg-12">
+                <div class="jumbotron jumbotron-fluid" style="background-image: url('{{ asset('images/kampung_tangerang.jpg')}}'); background-size: cover;">
+                    <div class="row">
+                        <div class="container d-flex justify-content-center">
+                            <img src="{{ asset('images/kota-tangerang.png') }}" width="100" alt="User Image" style="width: 20%">
+                        </div>
+                        <div class="container d-flex justify-content-center mt-2">
+                            <br>
+                            <br>
+                            <h1 class="" style="color: white"><b>Selamat datang di SI-PENGGAJIAN  <br> DISPORA KOTA TANGERANG</b></h1>
+                            {{-- <h2 class="" style="color: black"><b></b></h2> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-lg-6 col-6">
                 <div class="small-box bg-info">
                     <div class="inner">
