@@ -32,4 +32,8 @@ class Karyawan extends Model
     {
         return $this->hasOne(DetailGaji::class);
     }
+
+    public function user(){
+        return $this->hasOne(User::class);
+    }
 }

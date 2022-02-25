@@ -16,101 +16,102 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between">
-                        <h3 class="card-title">GENERATE GAJI KARYAWAN</h3>
-                    </div>
-                    <div class="card-body">
-                        <form action="{{ url('admin/detail-gaji/generate-detail-gaji') }}" method="post">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="mb-4">
-                                                <label for="tgl_lahir">Tanggal Periode Awal</label>
-                                                <input type="date" name="periode_form" placeholder="periode..." class="form-control" value="">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="mb-4">
-                                                <label for="tgl_lahir">Tanggal Periode Akhir</label>
-                                                <input type="date" name="periode_to" placeholder="periode..." class="form-control" value="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-success">
-                                        <i class="glyphicon glyphicon-floppy-saved">Generate Gaji</i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>   
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between">
-                        <h3 class="card-title">FILTER GAJI KARYAWAN</h3>
-                    </div>
-                    @if ($message = Session::get('error'))
-                        <div class="alert alert-success alert-block">
-                            <button type="button" class="close" data-dismiss="alert">×</button>    
-                            <strong>{{ $message }}</strong>
+    @if(Auth()->user()->role != "karyawan" )
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <h3 class="card-title">GENERATE GAJI KARYAWAN</h3>
                         </div>
-                    @endif
-                    <div class="card-body">
-                        <form action="{{ url('admin/detail-gaji') }}" method="get">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="mb-4">
-                                                <label for="tgl_lahir">Tanggal Periode Awal</label>
-                                                <input type="date" name="periode_from" placeholder="periode..." class="form-control" value="">
+                        <div class="card-body">
+                            <form action="{{ url('admin/detail-gaji/generate-detail-gaji') }}" method="post">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="mb-4">
+                                                    <label for="tgl_lahir">Tanggal Periode Awal</label>
+                                                    <input type="date" name="periode_form" placeholder="periode..." class="form-control" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-4">
+                                                    <label for="tgl_lahir">Tanggal Periode Akhir</label>
+                                                    <input type="date" name="periode_to" placeholder="periode..." class="form-control" value="">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4">
-                                            <div class="mb-4">
-                                                <label for="tgl_lahir">Tanggal Periode Akhir</label>
-                                                <input type="date" name="periode_to" placeholder="periode..." class="form-control" value="">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="mb-4">
-                                                <label for="tgl_lahir">Nama</label>
-                                                <input type="text" name="name" placeholder="nama..." class="form-control" value="">
-                                            </div>
-                                        </div>
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="glyphicon glyphicon-floppy-saved">Generate Gaji</i>
+                                        </button>
                                     </div>
-                                    <button type="submit" class="btn btn-success">
-                                        <i class="glyphicon glyphicon-floppy-saved">Filter</i>
-                                    </button>
-                                    @php
-                                        $params = '';
-                                        if (isset($filters['periode_from']) && isset($filters['periode_to'])) {
-                                            $params = 'periode_from='.$filters['periode_from'].'&'.'periode_to='.$filters['periode_to'];
-                                        }
-                                    @endphp
-                                    <a href="{{ url('admin/detail-gaji/export-excel?'.$params)}}" type="submit" class="btn btn-primary">
-                                        <i class="glyphicon glyphicon-floppy-saved">export excel</i>
-                                    </a>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>   
+                            </form>
+                        </div>
+                    </div>   
+                </div>
             </div>
         </div>
-    </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <h3 class="card-title">FILTER GAJI KARYAWAN</h3>
+                        </div>
+                        @if ($message = Session::get('error'))
+                            <div class="alert alert-success alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>    
+                                <strong>{{ $message }}</strong>
+                            </div>
+                        @endif
+                        <div class="card-body">
+                            <form action="{{ url('admin/detail-gaji') }}" method="get">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="mb-4">
+                                                    <label for="tgl_lahir">Tanggal Periode Awal</label>
+                                                    <input type="date" name="periode_from" placeholder="periode..." class="form-control" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-4">
+                                                    <label for="tgl_lahir">Tanggal Periode Akhir</label>
+                                                    <input type="date" name="periode_to" placeholder="periode..." class="form-control" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-4">
+                                                    <label for="tgl_lahir">Nama</label>
+                                                    <input type="text" name="name" placeholder="nama..." class="form-control" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="glyphicon glyphicon-floppy-saved">Filter</i>
+                                        </button>
+                                        @php
+                                            $params = '';
+                                            if (isset($filters['periode_from']) && isset($filters['periode_to'])) {
+                                                $params = 'periode_from='.$filters['periode_from'].'&'.'periode_to='.$filters['periode_to'];
+                                            }
+                                        @endphp
+                                        <a href="{{ url('admin/detail-gaji/export-excel?'.$params)}}" type="submit" class="btn btn-primary">
+                                            <i class="glyphicon glyphicon-floppy-saved">export excel</i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>
+    @endif
 
     <div class="container-fluid">
         <div class="row">

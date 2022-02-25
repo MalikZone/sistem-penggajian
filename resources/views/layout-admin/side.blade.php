@@ -83,7 +83,7 @@
             </li>
           @endif
           
-          @if (Auth::user()->role == "admin-keuangan" || Auth::user()->role == "karyaw")
+          @if (Auth::user()->role == "admin-keuangan" || Auth::user()->role == "karyawan")
             <li class="nav-item has-treeview menu-open">
               <a href="{{route('detail-gaji')}}" class="nav-link">
                 <i class="nav-icon fas fa-file-alt"></i>

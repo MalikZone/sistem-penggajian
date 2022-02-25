@@ -65,11 +65,28 @@ class DetailGajiController extends Controller
     }
 
     public function index(Request $request){
+        $user       = Auth()->user();
+        $detailGaji = '';
         $filters    = $request->only([
             'periode_from','periode_to', 'name'
         ]);
-        $detailGaji       = $this->detailGajiList($filters);
+        if ($user->role == 'karyawan') {
+            $karyawan   = $this->findKaryawanByUserId($user->id);
+            $detailGaji = $this->detailGajiByIdKaryawan($karyawan->id);
+        } else {
+            $detailGaji       = $this->detailGajiList($filters);
+        }
         return view('layout-admin.detail-gaji.index', compact('detailGaji', 'filters'));
+    }
+
+    public function findKaryawanByUserId($userId){
+        return Karyawan::with([])
+            ->where('user_id', $userId)->first();
+    }
+
+    public function detailGajiByIdKaryawan($karyawanId){
+        $data = DetailGaji::with(['karyawan']);
+        return $data->where('karyawan_id', $karyawanId)->get();
     }
 
     public function detailGajiList($filters){
@@ -80,7 +97,6 @@ class DetailGajiController extends Controller
                 'periode_to'   => $filters['periode_to'],
             ]);
         }
-
         if (isset($filters['name'])) {
             $data = $data->whereHas('karyawan', function ($query) use ($filters) {
                 $query->where('nama', 'like', '%' . $filters['name'] . '%');
