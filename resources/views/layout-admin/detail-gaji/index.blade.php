@@ -72,16 +72,22 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <div class="mb-4">
                                                 <label for="tgl_lahir">Tanggal Periode Awal</label>
                                                 <input type="date" name="periode_from" placeholder="periode..." class="form-control" value="">
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <div class="mb-4">
                                                 <label for="tgl_lahir">Tanggal Periode Akhir</label>
                                                 <input type="date" name="periode_to" placeholder="periode..." class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-4">
+                                                <label for="tgl_lahir">Nama</label>
+                                                <input type="text" name="name" placeholder="nama..." class="form-control" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -112,23 +118,6 @@
               <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h3 class="card-title">DETAIL GAJI KARYAWAN</h3>
-                </div>
-                <div class="card-header">
-                    <div>
-                        <a href="{{route('form-divisi')}}" class="btn btn-sm btn-success" style="margin-bottom: 20px">
-                            <i class="fa fa-plus">Tambah Data</i>
-                        </a>
-                    </div>
-  
-                    {{-- <div class="card-tools">
-                        <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0">

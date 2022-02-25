@@ -40,10 +40,31 @@ class PotonganController extends Controller
 
             $result['status']  = true;
             $result['message'] = 'save potongan success';
-            return redirect('/admin/potongan');
+            return redirect('/admin/potongan')->with(['success' => $result['message']]);
         } catch (\exception $e) {
             $result['message'] = 'function savePotongan() fail => ' . $e->getMessage();
-            return redirect()->back();
+            return redirect()->back()->with(['error' => $result['message']]);
+        }
+    }
+
+    public function deletePotongan($id){
+        $result = [
+            'status'  => false,
+            'message' => ''
+        ];
+        try {
+            $potongan = $this->findPotonganById($id);
+            if (!$potongan) {
+                return 'data potongan not found';
+            }
+            $potongan->delete();
+
+            $result['status']  = true;
+            $result['message'] = 'delete data success';
+            return redirect('/admin/potongan')->with(['success' => $result['message']]);
+        } catch (\exception $e) {
+            $result['message'] = 'function deletepotongan() fail => ' . $e->getMessage();
+            return redirect('/admin/potongan')->with(['error' => $result['message']]);
         }
     }
 }

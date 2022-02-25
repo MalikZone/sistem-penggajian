@@ -20,6 +20,12 @@
         <div class="row">
             <div class="col-12">
               <div class="card">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
                 <div class="card-header d-flex justify-content-between">
                     <h3 class="card-title">DATA POTONGAN</h3>
                 </div>
@@ -59,6 +65,13 @@
                                         <a href="{{url('admin/potongan/form-potongan/' . $item->id)}}" class="btn btn-primary">
                                             <i class="fa fa-edit"></i>
                                         </a>
+                                        <form action="{{url('admin/potongan/delete-potongan/' . $item->id)}}" method="post" onclick="return confirm('Hapus Data ?')">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-danger">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @empty

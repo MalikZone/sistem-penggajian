@@ -66,7 +66,7 @@ class DetailGajiController extends Controller
 
     public function index(Request $request){
         $filters    = $request->only([
-            'periode_from','periode_to'
+            'periode_from','periode_to', 'name'
         ]);
         $detailGaji       = $this->detailGajiList($filters);
         return view('layout-admin.detail-gaji.index', compact('detailGaji', 'filters'));
@@ -80,6 +80,12 @@ class DetailGajiController extends Controller
                 'periode_to'   => $filters['periode_to'],
             ]);
         }
+
+        if (isset($filters['name'])) {
+            $data = $data->whereHas('karyawan', function ($query) use ($filters) {
+                $query->where('nama', 'like', '%' . $filters['name'] . '%');
+            });
+        }
         return $data->get();
     }
 
@@ -92,6 +98,7 @@ class DetailGajiController extends Controller
         $karyawan = Karyawan::with(['divisi', 'gaji', 'absensi', 'golongan'])->get();
         foreach ($karyawan as $value) {
             $absensiPerPeriode = $this->getAbsensiPerPeriode($request->periode_form, $request->periode_to);
+            $tunjanganGolongan = $value->golongan->tunjangan;
             foreach ($absensiPerPeriode as $item) {
                 if ($item->absen != 0 || $item->late != 0) {
                     $deductionAbsen  = $this->deductionAbsen($value->gaji->gaji, $item->absen);
@@ -108,7 +115,7 @@ class DetailGajiController extends Controller
                 $detailGaji->periode_from  = $request->periode_form;
                 $detailGaji->periode_to    = $request->periode_to;
                 $detailGaji->potongan      = $totalDeduction;
-                $detailGaji->total_gaji    = $value->gaji->gaji - $totalDeduction;
+                $detailGaji->total_gaji    = $value->gaji->gaji + $tunjanganGolongan - $totalDeduction;
                 $detailGaji->save();
     
                 $result['status']  = true;
@@ -156,7 +163,7 @@ class DetailGajiController extends Controller
 
     public function detailGaji($id){
         
-        $detailGaji = DetailGaji::with(['karyawan'])
+        $detailGaji = DetailGaji::with(['karyawan.golongan'])
                         ->orderBy('id', 'DESC')
                         ->find($id);
         $absen      = Absensi::with(['karyawan'])

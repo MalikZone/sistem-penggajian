@@ -61,11 +61,11 @@
             <!-- Table row -->
             <div class="row">
             <div class="col-12 table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped" style="border: 1px solid black;">
                     <thead>
-                        <tr>
+                        <tr style="border: 1px solid black;">
                             <th>Id</th>
-                            <th>Karyawan</th>
+                            <th>Pegawai</th>
                             <th>Periode</th>
                             <th>Gaji Pokok</th>
                             <th>Potongan</th>
@@ -73,7 +73,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr style="border: 1px solid black;">
                             <td>{{$detailGaji['id']}}</td>
                             <td>{{$detailGaji['karyawan']['nama']}}</td>
                             <td>{{$detailGaji['periode_from'].' - '.$detailGaji['periode_to']}}</td>
@@ -89,32 +89,11 @@
 
             <div class="row">
                 <!-- accepted payments column -->
-                <div class="col-6">
-                    {{-- <p class="lead">Detail Potongan Absensi</p>
-                    <table class="table table-striped">
-                        <thead>clear
-                            <tr>
-                                <th>Keterangan</th>
-                                <th>Tanggal</th>
-                                <th>potongan</th>
-                            </tr>
-                            
-                        </thead>
-                        <tbody>
-                            {{dd($absen)}}
-                            @foreach ($absen as $item)
-                                <tr>
-                                    <td>{{$item->keterangan}}</td>
-                                    <td>test</td>
-                                    <td>{{number_format($detailGaji->karyawan->gaji->gaji * (1/100), 0)}}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table> --}}
+                <div>
                     <p class="lead">Detail Potongan Lain-Lain</p>
-                    <table class="table table-striped">
+                    <table class="table table-striped" style="border: 1px solid black;">
                         <thead>
-                            <tr>
+                            <tr style="border: 1px solid black;">
                                 <th>Keterangan</th>
                                 <th>Periode</th>
                                 <th>Nominal</th>
@@ -122,42 +101,38 @@
                         </thead>
                         <tbody>
                             @foreach ($potongan as $item)
-                                <tr>
+                                <tr style="border: 1px solid black;">
                                     <td>{{$item['keterangan']}}</td>
                                     <td>{{$detailGaji['periode_from'].' - '.$detailGaji['periode_to']}}</td>
                                     <td>{{$item['potongan']}}</td>
                                 </tr>
                             @endforeach
-                            {{-- <tr>
-                                <th>Total</th>
-                                <th></th>
-                                <th>{{number_format($detailGaji->potongan, 0)}}</th>
-                            </tr> --}}
                         </tbody>
                     </table>
                 </div>
-                <!-- /.col -->
-                <div class="col-6">
-                    <p class="lead">Periode: {{$detailGaji['periode_from'].' - '.$detailGaji['periode_to']}}</p>
-    
-                    {{-- <div class="table-responsive">
-                        <table class="table">
-                            <tr>
-                            <th style="width:50%">Gaji Pokok:</th>
-                                <td>{{number_format($detailGaji->karyawan->gaji->gaji, 0)}}</td>
-                            </tr>
-                            <tr>
-                                <th>Total Potongan:</th>
-                                <td>{{number_format($detailGaji->potongan, 0)}}</td>
-                            </tr>
-                            <tr>
-                                <th>Gaji Diterima:</th>
-                                <td>{{number_format($detailGaji->total_gaji,0)}}</td>
-                            </tr>
-                        </table>
-                    </div> --}}
+            </div>
+
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table" style="border: 1px solid black;">
+                        <tr style="border: 1px solid black;">
+                            <th>Gaji Pokok :</th>
+                            <td>{{number_format($detailGaji->karyawan->gaji->gaji, 0)}}</td>
+                        </tr>
+                        <tr style="border: 1px solid black;">
+                            <th>Tunjangan Golongan :</th>
+                            <td>{{number_format($detailGaji->karyawan->golongan->tunjangan, 0)}}</td>
+                        </tr>
+                        <tr style="border: 1px solid black;">
+                            <th>Total Potongan :</th>
+                            <td>{{number_format($detailGaji->potongan, 0)}}</td>
+                        </tr>
+                        <tr style="border: 1px solid black;">
+                            <th>Gaji Diterima :</th>
+                            <td>{{number_format($detailGaji->total_gaji,0)}}</td>
+                        </tr>
+                    </table>
                 </div>
-                <!-- /.col -->
             </div>
             <!-- /.row -->
         </div>
