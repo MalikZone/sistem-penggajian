@@ -43,7 +43,7 @@
                                 {{csrf_field()}}
                                 <div class="mb-4">
                                     <label for="nama">Nama</label>
-                                    <input type="text" name="nama" placeholder="nama.." class="form-control" value="{{isset($karyawan) ? $karyawan->nama : ''}}">
+                                    <input type="text" name="nama" placeholder="nama.." class="form-control" value="{{isset($karyawan) ? $karyawan->nama : ''}}" required>
                                 </div>
 
                                 <div class="mb-4">
@@ -68,22 +68,22 @@
 
                                 <div class="mb-4">
                                     <label for="tgl_lahir">Tanggal Lahir</label>
-                                    <input type="date" name="tgl_lahir" placeholder="tanggal lahir..." class="form-control" value="{{isset($karyawan) ? $karyawan->tgl_lahir : ''}}">
+                                    <input type="date" name="tgl_lahir" placeholder="tanggal lahir..." class="form-control" value="{{isset($karyawan) ? $karyawan->tgl_lahir : ''}}" required>
                                 </div>
 
                                 <div class="mb-4">
                                     <label for="email">Email</label>
-                                    <input type="text" name="email" placeholder="email..." class="form-control" value="{{isset($karyawan) ? $karyawan->email : ''}}">
+                                    <input type="text" name="email" placeholder="email..." class="form-control" value="{{isset($karyawan) ? $karyawan->email : ''}}" required>
                                 </div>
 
                                 <div class="mb-4">
                                     <label for="no_tlp">No Telepon</label>
-                                    <input type="text" name="no_tlp" placeholder="telepon..." class="form-control" value="{{isset($karyawan) ? $karyawan->telepon : ''}}">
+                                    <input type="text" name="no_tlp" placeholder="telepon..." class="form-control" value="{{isset($karyawan) ? $karyawan->telepon : ''}}" required>
                                 </div>
 
                                 <div class="mb-4">
                                     <label for="no_tlp">Password</label>
-                                    <input type="password" name="password" placeholder="password..." class="form-control" value="">
+                                    <input type="password" name="password" placeholder="password..." class="form-control" value="" required>
                                 </div>
 
                                 <div class="mb-4">

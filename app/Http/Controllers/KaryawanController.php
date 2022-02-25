@@ -107,7 +107,12 @@ class KaryawanController extends Controller
     public function storeKaryawan(Request $request)
     {
         try {
-            DB::beginTransaction();
+            $validatedData = $request->validate([
+                'nama' => 'required',
+                'email' => 'required',
+            ]);
+
+            // DB::beginTransaction();
             $user = new User();
             $user->name = $request->nama;
             $user->email = $request->email;
@@ -130,8 +135,9 @@ class KaryawanController extends Controller
             $result['status']  = true;
             $result['message'] = 'save karyawan success';
             return redirect('/admin/karyawan')->with(['success' => $result['message']]);
+            // DB::commit();
         } catch (Exception $e) {
-            $result['message'] = 'function saveKaryawan() fail => ' . $e->getMessage();
+            $result['message'] = 'function storeKaryawan() fail => ' . $e->getMessage();
             return redirect()->back()->with(['error' => $result['message']]);
         }
         
