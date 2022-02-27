@@ -19,7 +19,7 @@ class CreateKaryawan extends Migration
             $table->string('nama');
             $table->date('tgl_lahir');
             $table->string('email');
-            $table->bigInteger('telepon');
+            $table->string('telepon');
             $table->longText('alamat');
             $table->string('jender');
             $table->timestamps();
