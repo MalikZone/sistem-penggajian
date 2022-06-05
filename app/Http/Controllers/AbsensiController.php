@@ -3,32 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Absensi;
+use App\Http\QueryRepositories\QueryAbsensi;
 use App\Karyawan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class AbsensiController extends Controller
 {
-    public function findAbsensiById($id){
-        return Absensi::with([])
-            ->find($id);
-    }
 
-    public function absenOnDate($id, $date){
-        return Absensi::with([])
-            ->where('karyawan_id', $id )
-            ->Where('tanggal', $date)->first();
+    protected $queryAbsensi;
+
+    public function __construct() {
+        $this->queryAbsensi = new QueryAbsensi;
     }
 
     public function index(){
-        $absensi = Absensi::with(['karyawan'])
-                    ->orderBy('id', 'DESC')
-                    ->get();
+        $absensi = $this->queryAbsensi->getDataAbsensi();
         return view('layout-admin.absensi.index', compact('absensi'));
     }
 
     public function formAbsensi($id = null){
-        $absensi      = $this->findAbsensiById($id);
+        $absensi      = $this->queryAbsensi->findAbsensiById($id);
         $karyawan     = Karyawan::all();
         return view('layout-admin.absensi.form', compact('absensi', 'karyawan'));
     }
@@ -39,7 +34,7 @@ class AbsensiController extends Controller
             'message' => ''
         ];
         try {
-            $absensi = $this->findAbsensiById($id);
+            $absensi      = $this->queryAbsensi->findAbsensiById($id);
             if (!$absensi) {
                 $absensi         = new Absensi();
             }
@@ -62,6 +57,14 @@ class AbsensiController extends Controller
         }
     }
 
+    public function deleteAbsensi($id){
+        $absensi      = $this->queryAbsensi->findAbsensiById($id);
+        if (!$absensi) {
+            return 'data absensi not found';
+        }
+        $absensi->delete();
+    }
+
     // public function saveAbsensi(Request $request, $id = null){
     //     $result = [
     //         'status'  => false,
@@ -71,7 +74,7 @@ class AbsensiController extends Controller
     //         $absensi = $this->findAbsensiById($id);
     //         if (!$absensi) {
     //             $absensi         = new Absensi();
-    //             $absenOnDate     = $this->absenOnDate($request->karyawan_id, $request->tgl_absen);
+    //             $absenOnDate     = $this->queryAbsensi->absenOnDate($request->karyawan_id, $request->tgl_absen);
     //             if ($absenOnDate) {
     //                 return redirect()->back()->with(['error' => 'anda tidak bisa melakukan absensi lebih dari sekali']);
     //             }
@@ -90,11 +93,4 @@ class AbsensiController extends Controller
     //     }
     // }
 
-    public function deleteAbsensi($id){
-        $absensi = $this->findAbsensiById($id);
-        if (!$absensi) {
-            return 'data absensi not found';
-        }
-        $absensi->delete();
-    }
 }

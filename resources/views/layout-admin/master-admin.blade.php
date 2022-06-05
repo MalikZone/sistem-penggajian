@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
   <title>SISTEM PENGGAJIAN KARYAWAN @yield('title')</title>
@@ -107,6 +108,12 @@ to get the desired effect
 <script src="{{ asset('template-backend/plugins/chart.js/Chart.min.js') }}"></script>
 <script src="{{ asset('template-backend/dist/js/demo.js') }}"></script>
 <script src="{{ asset('template-backend/dist/js/pages/dashboard3.js') }}"></script>
+<script>
+         let routes = {
+                  cek_proses : "{{ route('cek-proses') }}"
+          };
+</script>
+<script src="{{asset('js/main.js')}}"></script>
 @yield('data-table')
 </body>
 </html>

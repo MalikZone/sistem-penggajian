@@ -70,6 +70,11 @@ function () {
         Route::post('/save-potongan/{id?}', 'PotonganController@savePotongan');
         Route::delete('/delete-potongan/{id}', 'PotonganController@deletePotongan');
     });
+
+    Route::prefix('cek-input-karakter')->group(function(){
+        Route::get('/', 'CekInputController@index')->name('cek-input');
+        Route::post('/cek-proses', 'CekInputController@proses')->name('cek-proses');
+    });
 });
 
 // Route::get('/example-page', function () {

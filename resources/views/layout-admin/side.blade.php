@@ -8,7 +8,7 @@
         <div class="image">
           <img src="{{ asset('images/kota-tangerang.png') }}" class="img-circle elevation-2" alt="User Image">
           <br>
-          <h5 style="color: white;">Dispora Kota Tangerang</h5>
+          <h5 style="color: white;">Penggajian Dispora Kota Tangerang</h5>
         </div>
         <div class="info">
           <a href="#" class="d-block"></a>
@@ -81,6 +81,14 @@
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 Potongan
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="{{route('cek-input')}}" class="nav-link">
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                Cek Input Karakter
               </p>
             </a>
           </li>

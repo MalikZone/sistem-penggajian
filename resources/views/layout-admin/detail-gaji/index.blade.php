@@ -21,8 +21,14 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                        <h3 class="card-title">GENERATE GAJI KARYAWAN</h3>
+                        <h3 class="card-title">HITUNG GAJI KARYAWAN</h3>
                     </div>
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-danger alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>    
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
                     <div class="card-body">
                         <form action="{{ url('admin/detail-gaji/generate-detail-gaji') }}" method="post">
                             <div class="row">
@@ -43,7 +49,7 @@
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-success">
-                                        <i class="glyphicon glyphicon-floppy-saved">Generate Gaji</i>
+                                        <i class="glyphicon glyphicon-floppy-saved">Hitung Gaji</i>
                                     </button>
                                 </div>
                             </div>
@@ -61,12 +67,12 @@
                     <div class="card-header d-flex justify-content-between">
                         <h3 class="card-title">FILTER GAJI KARYAWAN</h3>
                     </div>
-                    @if ($message = Session::get('error'))
-                        <div class="alert alert-success alert-block">
+                    {{-- @if ($message = Session::get('error'))
+                        <div class="alert alert-danger alert-block">
                             <button type="button" class="close" data-dismiss="alert">×</button>    
                             <strong>{{ $message }}</strong>
                         </div>
-                    @endif
+                    @endif --}}
                     <div class="card-body">
                         <form action="{{ url('admin/detail-gaji') }}" method="get">
                             <div class="row">
