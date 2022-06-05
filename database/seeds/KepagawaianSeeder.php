@@ -21,5 +21,25 @@ class KepagawaianSeeder extends Seeder
                 'password'  => Hash::make('qwerty'),
             ]
         );
+
+        DB::table('divisi')->insert(
+            [
+                'divisi'      => 'Hubungan Masyarakat',
+            ]
+        );
+
+        DB::table('golongans')->insert(
+            [
+                'golongan'      => 'Golongan IV',
+                'tunjangan'     => 10000000,
+            ]
+        );
+
+        DB::table('potongan')->insert(
+            [
+                'keterangan'      => 'Zakat',
+                'potongan'     => 200000,
+            ]
+        );
     }
 }
